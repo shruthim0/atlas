@@ -4,18 +4,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Feedback | fresh</title>
+<title>UC Atlas | fresh</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Feedback" />
+<meta property="og:title" content="UC Atlas" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="https://shruthim0.github.io/datapirates/feedback/" />
-<meta property="og:url" content="https://shruthim0.github.io/datapirates/feedback/" />
+<link rel="canonical" href="https://shruthim0.github.io/datapirates/ucatlas/" />
+<meta property="og:url" content="https://shruthim0.github.io/datapirates/ucatlas/" />
 <meta property="og:site_name" content="fresh" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Feedback" />
+<meta property="twitter:title" content="UC Atlas" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","headline":"Feedback","url":"https://shruthim0.github.io/datapirates/feedback/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"UC Atlas","url":"https://shruthim0.github.io/datapirates/ucatlas/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/datapirates/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shruthim0.github.io/datapirates/feed.xml" title="fresh" /><link rel="shortcut icon" type="image/x-icon" href="/datapirates/images/pflag.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -62,57 +62,95 @@ window.onload = wrap_img;
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/datapirates/Nutrition%20Wizard/">Nutrition Wizard</a><a class="page-link" href="/datapirates/foodforyourmood/">Food For Your Mood</a><a class="page-link" href="/datapirates/_pages/finalmealsearch.html">Fantastic Food Finder</a><a class="page-link" href="/datapirates/search/">Search</a><a class="page-link" href="/datapirates/feedback/">Feedback</a><a class="page-link" href="/datapirates/whatsinyourfridge/">What&#39;s in Your Fridge?</a></div>
+        <div class="trigger"><a class="page-link" href="/datapirates/search/">Search</a><a class="page-link" href="/datapirates/ucatlas/">UC Atlas</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <html>
-<!-- below is the code for leaving reviews -->
+        <style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
 
+h1 {
+  color: #333;
+}
+
+#answer {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#showTableBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #333;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+}
+
+</style>
+
+
+
+<html>
 <head>
-	<title>Review Page</title>
+  <title>UC Specifications</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<h1>Reviews</h1>
-	<form>
-		<label for="review">Leave a review:</label><br>
-		<textarea id="review" name="review" rows="4" cols="50"></textarea><br>
-		<label for="name">Your name:</label>
-		<input type="text" id="name" name="name"><br>
-		<button type="button" onclick="addReview()">Submit</button>
-	</form>
-	<div id="past-reviews">
-		<h2>Past Reviews</h2>
-	</div>
-	<script>
-		let reviews = [];
+  <h1>Questions!</h1>
+  <p id="answer">Waiting for answer...</p>
+  <button id="showTableBtn" onclick="showTable()">Show Table</button>
 
-		function addReview() {
-			const review = document.getElementById("review").value;
-			const name = document.getElementById("name").value;
-			const reviewElement = document.createElement("p");
-			const reviewText = document.createTextNode(`${name}: ${review}`);
-			reviewElement.appendChild(reviewText);
-			document.body.appendChild(reviewElement);
-			reviews.push({name, review});
-			updatePastReviews();
-		}
+  <table id="table" style="display: none;">
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Value 1</td>
+        <td>Value 2</td>
+        <td>Value 3</td>
+      </tr>
+      <tr>
+        <td>Value 4</td>
+        <td>Value 5</td>
+        <td>Value 6</td>
+      </tr>
+    </tbody>
+  </table>
 
-		function updatePastReviews() {
-			const pastReviewsElement = document.getElementById("past-reviews");
-			pastReviewsElement.innerHTML = "<h2>Past Reviews</h2>";
-			for (let i = 0; i < reviews.length; i++) {
-				const reviewElement = document.createElement("p");
-				const reviewText = document.createTextNode(`${reviews[i].name}: ${reviews[i].review}`);
-				reviewElement.appendChild(reviewText);
-				pastReviewsElement.appendChild(reviewElement);
-			}
-		}
-	</script>
+  <script src="script.js"></script>
 </body>
-
 </html>
+
+<script>
+function showTable() {
+    document.getElementById("table").style.display = "table";
+  }
+
+</script>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/datapirates/"></data>

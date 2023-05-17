@@ -29,30 +29,25 @@
   
 
   
+  
 
   
-      ,"page3": {
-          "title": "Fantastic Food Finder",
-          "content": "Fantastic Food Finder . Plan your next meals! Get recipes everyday based on what food you feel like eating! . . Please select a meal type: Breakfast Lunch Dinner Dessert Please select a Cuisine type: Chinese Italian Indian Mexican American Recipe Type: Breakfast Lunch Dinner Dessert Recipe Cuisine: Chinese Italian Indian Mexican American Recipe Name: Recipe Link: .",
-          "url": "https://shruthim0.github.io/datapirates/_pages/finalmealsearch.html",
-          "relUrl": "/_pages/finalmealsearch.html",
+
+  
+  
+
+  
+      ,"page5": {
+          "title": "UC Atlas",
+          "content": "UC Specifications . Questions! . Waiting for answer... . Show Table Column 1 Column 2 Column 3 . Value 1 | Value 2 | Value 3 | . Value 4 | Value 5 | Value 6 | . .",
+          "url": "https://shruthim0.github.io/datapirates/ucatlas/",
+          "relUrl": "/ucatlas/",
           "date": ""
       }
       
   
 
   
-
-  
-  
-
-  
-
-  
-  
-
-  
-
   
 
   
@@ -65,10 +60,7 @@
   
 
   
-  
-
-  
-      ,"page14": {
+      ,"page10": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/datapirates/robots.txt",
