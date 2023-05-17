@@ -1,0 +1,91 @@
+---
+layout: base
+permalink: /ucatlas/
+title: UC Atlas
+---
+
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+#answer {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#showTableBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #333;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+}
+
+</style>
+
+
+
+<html>
+<head>
+  <title>UC Specifications</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>Questions!</h1>
+  <p id="answer">Waiting for answer...</p>
+  <button id="showTableBtn" onclick="showTable()">Show Table</button>
+
+  <table id="table" style="display: none;">
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Value 1</td>
+        <td>Value 2</td>
+        <td>Value 3</td>
+      </tr>
+      <tr>
+        <td>Value 4</td>
+        <td>Value 5</td>
+        <td>Value 6</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<script>
+function showTable() {
+    document.getElementById("table").style.display = "table";
+  }
+
+</script>
