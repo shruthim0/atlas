@@ -17,7 +17,7 @@
   
       "page5": {
           "title": "UC Atlas",
-          "content": "UC Specifications . Questions! . Waiting for answer... . Show Table Column 1 Column 2 Column 3 . Value 1 | Value 2 | Value 3 | . Value 4 | Value 5 | Value 6 | . .",
+          "content": "&lt;!DOCTYPE html&gt; . College Finder Quiz . College Finder Quiz . Question 1: . What size college are you interested in? . Small (less than 5,000 students) Medium (5,000-15,000 students) Large (more than 15,000 students) Question 2: . What location do you prefer? . Urban Suburban Rural Results . College Name Location Size Admission Rate . .",
           "url": "https://shruthim0.github.io/atlas/ucatlas/",
           "relUrl": "/ucatlas/",
           "date": ""

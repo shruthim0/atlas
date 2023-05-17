@@ -68,88 +68,118 @@ window.onload = wrap_img;
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-h1 {
-  color: #333;
+.hidden {
+  display: none;
 }
-
-#answer {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-#showTableBtn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-}
-
-table {
-  margin-top: 20px;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 8px;
-  border: 1px solid #333;
-}
-
-th {
-  background-color: #333;
-  color: #fff;
-}
-
 </style>
 
-
-
+<!DOCTYPE html>
 <html>
-<head>
-  <title>UC Specifications</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-  <h1>Questions!</h1>
-  <p id="answer">Waiting for answer...</p>
-  <button id="showTableBtn" onclick="showTable()">Show Table</button>
-
-  <table id="table" style="display: none;">
-    <thead>
-      <tr>
-        <th>Column 1</th>
-        <th>Column 2</th>
-        <th>Column 3</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Value 1</td>
-        <td>Value 2</td>
-        <td>Value 3</td>
-      </tr>
-      <tr>
-        <td>Value 4</td>
-        <td>Value 5</td>
-        <td>Value 6</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>College Finder Quiz</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>College Finder Quiz</h1>
+      <form id="quiz-form">
+        <!-- Questions and answer choices -->
+        <h2>Question 1:</h2>
+        <p>What size college are you interested in?</p>
+        <label>
+          <input type="radio" name="question1" value="small">
+          Small (less than 5,000 students)
+        </label>
+        <label>
+          <input type="radio" name="question1" value="medium">
+          Medium (5,000-15,000 students)
+        </label>
+        <label>
+          <input type="radio" name="question1" value="large">
+          Large (more than 15,000 students)
+        </label>
+        <!-- More questions -->
+        <h2>Question 2:</h2>
+        <p>What location do you prefer?</p>
+        <label>
+          <input type="radio" name="question2" value="urban">
+          Urban
+        </label>
+        <label>
+          <input type="radio" name="question2" value="suburban">
+          Suburban
+        </label>
+        <label>
+          <input type="radio" name="question2" value="rural">
+          Rural
+        </label>
+        <!-- Submit button -->
+        <input type="submit" value="Submit">
+      </form>
+      <!-- Results table -->
+      <div id="results-table" class="hidden">
+        <h2>Results</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>College Name</th>
+              <th>Location</th>
+              <th>Size</th>
+              <th>Admission Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Results will be added here dynamically using JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
 
 <script>
-function showTable() {
-    document.getElementById("table").style.display = "table";
+const quizForm = document.getElementById('quiz-form');
+const resultsTable = document.getElementById('results-table');
+const colleges = [
+  {
+    name: 'Harvard University',
+    location: 'Urban',
+    size: 'Medium',
+    admissionRate: '4.6%'
+  },
+  {
+    name: 'University of Michigan',
+    location: 'Suburban',
+    size: 'Large',
+    admissionRate: '25%'
+  },
+  {
+    name: 'Amherst College',
+    location: 'Rural',
+    size: 'Small',
+    admissionRate: '11%'
   }
+];
 
+quizForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // prevent form submission
+  const formData = new FormData(quizForm);
+  const results = colleges.filter((college) => {
+    return college.location === formData.get('question2') &&
+           college.size === formData.get('question1');
+  });
+  showResults(results);
+});
+
+function showResults()
 </script>
       </div>
     </main><footer class="site-footer h-card">
