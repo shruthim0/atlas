@@ -18,7 +18,7 @@
       "page5": {
           "title": "UC Atlas",
           "content": "UC Specifications . Questions! . Waiting for answer... . Show Table Column 1 Column 2 Column 3 . Value 1 | Value 2 | Value 3 | . Value 4 | Value 5 | Value 6 | . .",
-          "url": "https://shruthim0.github.io/datapirates/ucatlas/",
+          "url": "https://shruthim0.github.io/atlas/ucatlas/",
           "relUrl": "/ucatlas/",
           "date": ""
       }
@@ -41,7 +41,7 @@
       ,"page10": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
-          "url": "https://shruthim0.github.io/datapirates/robots.txt",
+          "url": "https://shruthim0.github.io/atlas/robots.txt",
           "relUrl": "/robots.txt",
           "date": ""
       }

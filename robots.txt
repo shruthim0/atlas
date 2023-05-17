@@ -1,1 +1,1 @@
-Sitemap: https://shruthim0.github.io/datapirates/sitemap.xml
+Sitemap: https://shruthim0.github.io/atlas/sitemap.xml
