@@ -3,53 +3,130 @@ layout: base
 permalink: /ucatlas/
 title: UC Atlas
 ---
+<script> AOS.init();</script>
+<div data-aos="fade-right">
+<h2>Sports quiz</h2>
+<div id="question1">
+<p>Are you competitive?</p>
+<button onclick="answer(true)">Yes</button>
+<button onclick="answer(false)">No</button>
+</div>
+<div id="question2" style="display: none">
+<p>Do you want to play with a ball?</p>
+<button onclick="answer(true)">Yes</button>
+<button onclick="answer(false)">No</button>
+</div>
+<div id="question3" style="display: none">
+<p>Do you like contact sports?</p>
+<button onclick="answer(true)">Yes</button>
+<button onclick="answer(false)">No</button>
+</div>
+<div id="question4" style="display: none">
+<p>Do you want to play outside?</p>
+<button onclick="answer(true)">Yes</button>
+<button onclick="answer(false)">No</button>
+</div>
+<div id="question5" style="display: none">
+<p>Do you want to play on a team?</p>
+<button onclick="answer(true)">Yes</button>
+<button onclick="answer(false)">No</button>
+</div>
+<div id="question6" style="display: none">
+<p>Do you want your sport to involve running?</p>
+<button onclick="answer(true)">Yes</button>
+<button onclick="answer(false)">No</button>
+</div>
+<div id="result" style="display: none"></div>
+</div>
 
-
-     <!-- MORTS SEARCH TABLE -->
-      %%html
-      <head>
-          <!-- load jQuery and DataTables syle and scripts -->
-          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-          <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-          <script>var define = null;</script>
-          <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-      </head>
-      <table id="flaskTable" class="table" style="width:100%">
-          <thead id="flaskHead">
-              <tr>
-                  <th>Name</th>
-                  <th>Location</th>
-                  <th>Acceptance Rate</th>
-                  <th>Population</th>
-              </tr>
-          </thead>
-          <tbody id="flaskBody"></tbody>
-      </table>
-      
-      <script>
-        $(document).ready(function() {
-          fetch('LINKKKKKKKKKKKKKKK', { mode: 'cors' })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('API response failed');
-            }
-            return response.json();
-          })
-          .then(data => {
-            for (const row of data) {
-              // BUG warning/resolution - DataTable requires row to be single append
-              $('#flaskBody').append('<tr><td>' + 
-                  row.id + '</td><td>' + 
-                  row.name + '</td><td>' + 
-                  row.dob + '</td><td>' + 
-                  row.age + '</td></tr>');
-            }
-            // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
-            $("#flaskTable").DataTable();
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-        });
-      </script>
 <script>
+  const submitButton = document.getElementById('submit-button');
+  const sportSelect = document.getElementById('sport-select');
+  let sportsList = ["Basketball", "Soccer", "Baseball", "Football", "Volleyball", "Running", "Swimming", "Gymnastics", "Tennis", "Track and Field", "Golf", "Bowling", "Frisbee", "Hiking", "Yoga", "Meditation", "Ultimate Frisbee", "Beach Volleyball", "Indoor Soccer", "Indoor Volleyball", "Indoor Track and Field", "Rock Climbing", "Camping", "Rugby", "Hockey", "Lacrosse", "Wresling", "Flag Football", "Touch Football"];
+
+  submitButton.addEventListener('click', function() {
+    const selectedSport = sportSelect.value;
+    removeSport(selectedSport);
+  });
+
+  function removeSport(sport) {
+    sportsList = sportsList.filter(item => item !== sport);
+    console.log(`Removing sport: ${sport}`);
+    console.log(`Updated sports list: ${sportsList}`);
+  }
+</script>
+
+
+<script>
+// sports list
+var sportsList = ["basketball", "soccer", "baseball", "football", "volleyball", "running", "swimming", "gymnastics", "tennis", "track and field", "golf", "bowling", "frisbee", "hiking", "yoga", "meditation", "ultimate frisbee", "beach volleyball", "indoor soccer", "indoor volleyball", "indoor track and field", "rock climbing", "camping", "rugby", "hockey", "lacrosse", "wrestling", "flag football", "touch football"];
+// sets what question you are one
+var currentQuestion = 1;
+// Array for the answer to the questions
+var answers = [];
+// function for the questions
+function answer(response) {
+ // finds what answer it is on and hids it or unhides it
+ answers[currentQuestion - 1] = response;
+ document.getElementById("question" + currentQuestion).style.display = "none";
+ currentQuestion++;
+ if(currentQuestion <= 6) {
+   document.getElementById("question" + currentQuestion).style.display = "block";
+ } else {
+   removeSports(answers[0], answers[1], answers[2], answers[3], answers[4], answers[5]);
+   document.getElementById("result").style.display = "block";
+   document.getElementById("result").innerHTML = "Based on your answers, we recommend the following sports: " + sportsList.join(", ");
+ }
+}
+
+
+// function to remove sports from the list
+function removeSports(isCompetitive, wantsBall, likesContact, wantsOutside, wantsTeam, wantsRunning) {
+if (!isCompetitive) {
+ // Using the array that the user has made uses the ! as a sort of not operator and makes a sport function inside the filter to either exlucde or keep sports
+ sportsList = sportsList.filter(sport => sport !== "basketball" && sport !== "soccer" && sport !== "baseball" && sport !== "football" && sport !== "volleyball" && sport !== "swimming" && sport !== "gymnastics" && sport !== "tennis" );
+}
+// Goes through the same process for the rest of the if statments
+if (!wantsBall) {
+ sportsList = sportsList.filter(sport => sport !== "basketball" && sport !== "soccer" && sport !== "baseball" && sport !== "football" && sport !== "volleyball" && sport !== "golf" && sport !== "bowling" && sport !== "frisbee" );
+}
+if (!likesContact) {
+ sportsList = sportsList.filter(sport => sport !== "football" && sport !== "rugby" && sport !== "hockey" && sport !== "lacrosse" && sport !== "wrestling" );
+}
+if (!wantsOutside) {
+ sportsList = sportsList.filter(sport => sport !== "soccer" && sport !== "baseball" && sport !== "football" && sport !== "ultimate frisbee" && sport !== "beach volleyball" && sport !== "hiking" && sport !== "rock climbing" && sport !== "camping" );
+}
+if (!wantsTeam) {
+ sportsList = sportsList.filter(sport => sport !== "basketball" && sport !== "soccer" && sport !== "baseball" && sport !== "football" && sport !== "frisbee" && sport !== "ultimate frisbee" && sport !== "beach volleyball" && sport !== "indoor soccer" && sport !== "indoor volleyball" && sport !== "rugby" && sport !== "hockey" && sport !== "lacrosse" );
+}
+if (!wantsRunning) {
+ sportsList = sportsList.filter(sport => sport !== "soccer" && sport !== "baseball" && sport !== "football" && sport !== "running" && sport !== "track and field" && sport !== "frisbee" && sport !== "indoor soccer" && sport !== "indoor track and field" && sport !== "rugby" && sport !== "lacrosse" && sport !== "flag football" && sport !== "touch football" );
+}
+if (isCompetitive) {
+ // Using the array that the user has made uses the ! as a sort of not operator and makes a sport function inside the filter to either exlucde or keep sports
+ sportsList = sportsList.filter(sport => sport !== "golf" && sport !== "bowling" && sport !== "frisbee" && sport !== "hiking" && sport !== "meditation" && sport !== "ultimate frisbee" && sport !== "indoor volleyball" && sport !== "camping" );
+}
+// Goes through the same process for the rest of the if statments
+if (wantsBall) {
+ sportsList = sportsList.filter(sport => sport !== "running" && sport !== "swimming" && sport !== "gymnastics" && sport !== "hiking" && sport !== "track and field" && sport !== "yoga" && sport !== "meditation" && sport !== "indoor track and field" && sport !== "rock climbing" && sport !== "camping" && sport !== "wrestling" );
+}
+if (likesContact) {
+ sportsList = sportsList.filter(sport => sport !== "swimming" && sport !== "running" && sport !== "gymnastics" && sport !== "tennis" && sport !== "track and field" && sport !== "golf" && sport !== "bowling" && sport !== "hiking" && sport !== "yoga" && sport !== "meditation" && sport !== "indoor track and field" );
+}
+if (wantsOutside) {
+ sportsList = sportsList.filter(sport => sport !== "bowling" && sport !== "indoor soccer" && sport !== "indoor volleyball" && sport !== "indoor track and field" && sport !== "hockey" && sport !== "wrestling");
+}
+if (wantsTeam) {
+ sportsList = sportsList.filter(sport => sport !== "golf" && sport !== "hiking" && sport !== "yoga" && sport !== "meditation" && sport !== "rock climbing" && sport !== "camping");
+}
+if (wantsRunning) {
+ sportsList = sportsList.filter(sport => sport !== "swimming" && sport !== "golf" && sport !== "bowling" && sport !== "hiking" && sport !== "yoga" && sport !== "meditation" && sport !== "rock climbing" && sport !== "camping" && sport !== "wrestling" );
+}
+}
+// The result of the function
+document.getElementById("result").innerHTML = "Based on your answers, we recommend the following sports: " + sportsList.join(", ");
+
+
+
+
+</script>
