@@ -17,7 +17,7 @@
   
       "page5": {
           "title": "UC Atlas",
-          "content": "&lt;!DOCTYPE html&gt; . College Finder Quiz . College Finder Quiz . Question 1: . What size college are you interested in? . Small (less than 5,000 students) Medium (5,000-15,000 students) Large (more than 15,000 students) Question 2: . What location do you prefer? . Urban Suburban Rural Results . College Name Location Size Admission Rate . .",
+          "content": "&lt;!DOCTYPE html&gt; . College Finder Quiz . College Finder Quiz . Question 1: . What size college are you interested in? . Small (less than 5,000 students) Medium (5,000-15,000 students) Large (more than 15,000 students) Question 2: . What location do you prefer? . Urban Suburban Rural %%html . Name Location Acceptance Rate Population . .",
           "url": "https://shruthim0.github.io/atlas/ucatlas/",
           "relUrl": "/ucatlas/",
           "date": ""
