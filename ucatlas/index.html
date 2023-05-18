@@ -170,7 +170,7 @@ const colleges = [
 ];
 
 quizForm.addEventListener('submit', (event) => {
-  event.preventDefault(); // prevent form submission
+  event.preventDefault(); 
   const formData = new FormData(quizForm);
   const results = colleges.filter((college) => {
     return college.location === formData.get('question2') &&
