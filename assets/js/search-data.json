@@ -37,14 +37,6 @@
   
 
   
-      ,"page5": {
-          "title": "UC Atlas",
-          "content": "",
-          "url": "https://shruthim0.github.io/atlas/ucatlas/",
-          "relUrl": "/ucatlas/",
-          "date": ""
-      }
-      
   
 
   
@@ -57,10 +49,7 @@
   
 
   
-  
-
-  
-      ,"page10": {
+      ,"page9": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",
