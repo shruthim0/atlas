@@ -29,14 +29,10 @@
   
 
   
-  
-
-  
 
   
   
 
-  
   
 
   
@@ -49,7 +45,13 @@
   
 
   
-      ,"page9": {
+  
+
+  
+  
+
+  
+      ,"page10": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",
