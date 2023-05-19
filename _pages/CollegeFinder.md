@@ -20,7 +20,7 @@
 <button onclick="answer(false)">Very prestigious</button>
 </div>
 <div id="question4" style="display: none">
-<p>What do you prefer</p>
+<p>What do you prefer?</p>
 <button onclick="answer(true)">The beach</button>
 <button onclick="answer(false)">The forest</button>
 <button onclick="answer(false)">Large (more than 15,000 students)</button>
@@ -32,6 +32,24 @@
 <button onclick="answer(false)">Large (more than 15,000 students)</button>
 </div>
 <div id="question6" style="display: none">
+<p>What do you want to study?</p>
+
+<div id="question7" style="display: none">
+<p>Do you want to live in a college town?</p>
+<button onclick="answer(true)">Yes</button>
+<button onclick="answer(false)">No</button>
+<button onclick="answer(false)">Semi</button>
+<div id="question8" style="display: none">
+<p>Do you want your sport to involve running?</p>
+<button onclick="answer(true)">Small (less than 5,000 students)</button>
+<button onclick="answer(false)">Medium (5,000-15,000 students)</button>
+<button onclick="answer(false)">Large (more than 15,000 students)</button>
+<div id="question9" style="display: none">
+<p>Do you want your sport to involve running?</p>
+<button onclick="answer(true)">Small (less than 5,000 students)</button>
+<button onclick="answer(false)">Medium (5,000-15,000 students)</button>
+<button onclick="answer(false)">Large (more than 15,000 students)</button>
+<div id="question10" style="display: none">
 <p>Do you want your sport to involve running?</p>
 <button onclick="answer(true)">Small (less than 5,000 students)</button>
 <button onclick="answer(false)">Medium (5,000-15,000 students)</button>
@@ -39,3 +57,4 @@
 </div>
 <div id="result" style="display: none"></div>
 </div>
+
