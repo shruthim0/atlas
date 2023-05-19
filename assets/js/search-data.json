@@ -1,5 +1,27 @@
 {
   
+    
+        "post0": {
+            "title": "Java",
+            "content": "%%html &lt;head&gt; &lt;!-- load jQuery and DataTables syle and scripts --&gt; &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css&quot;&gt; &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt; &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js&quot;&gt;&lt;/script&gt; &lt;/head&gt; &lt;table id=&quot;flaskTable&quot; class=&quot;table&quot; style=&quot;width:100%&quot;&gt; &lt;thead id=&quot;flaskHead&quot;&gt; &lt;tr&gt; &lt;th&gt;ID&lt;/th&gt; &lt;th&gt;College&lt;/th&gt; &lt;th&gt;City&lt;/th&gt; &lt;th&gt;GPA&lt;/th&gt; &lt;th&gt;Acceptance Rate&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody id=&quot;flaskBody&quot;&gt;&lt;/tbody&gt; &lt;/table&gt; &lt;script&gt; $(document).ready(function() { fetch(&#39;https://flask.nighthawkcodingsociety.com/api/users/&#39;, { mode: &#39;cors&#39; }) .then(response =&gt; { if (!response.ok) { throw new Error(&#39;API response failed&#39;); } return response.json(); }) .then(data =&gt; { for (const row of data) { // BUG warning/resolution - DataTable requires row to be single append $(&#39;#flaskBody&#39;).append(&#39;&lt;tr&gt;&lt;td&gt;&#39; + row.id + &#39;&lt;/td&gt;&lt;td&gt;&#39; + row.college + &#39;&lt;/td&gt;&lt;td&gt;&#39; + row.city + &#39;&lt;/td&gt;&lt;td&gt;&#39; + row.gpa + &#39;&lt;/td&gt;&lt;td&gt;&#39; + row.rate + &#39;&lt;/td&gt;&lt;/tr&gt;&#39;); } // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages $(&quot;#flaskTable&quot;).DataTable(); }) .catch(error =&gt; { console.error(&#39;Error:&#39;, error); }); }); &lt;/script&gt; .",
+            "url": "https://shruthim0.github.io/atlas/2023/05/18/js.html",
+            "relUrl": "/2023/05/18/js.html",
+            "date": " • May 18, 2023"
+        }
+        
+    
+  
+    
+        ,"post1": {
+            "title": "Atlas",
+            "content": ".",
+            "url": "https://shruthim0.github.io/atlas/2023/05/12/atlas.html",
+            "relUrl": "/2023/05/12/atlas.html",
+            "date": " • May 12, 2023"
+        }
+        
+    
+  
 
   
   
@@ -15,7 +37,7 @@
   
 
   
-      "page5": {
+      ,"page5": {
           "title": "UC Atlas",
           "content": "Sports quiz . Are you competitive? . Yes No Do you want to play with a ball? . Yes No Do you like contact sports? . Yes No Do you want to play outside? . Yes No Do you want to play on a team? . Yes No Do you want your sport to involve running? . Yes No",
           "url": "https://shruthim0.github.io/atlas/ucatlas/",
