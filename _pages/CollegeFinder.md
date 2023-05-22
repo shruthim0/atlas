@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
   <title>College Finder</title>
 </head>
@@ -125,4 +124,3 @@
   <div id="result" style="display: none"></div>
 </div>
 </body>
-</html>
