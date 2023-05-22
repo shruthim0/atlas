@@ -24,13 +24,37 @@ title: College Finder
     }
   }
 
-  function showResult() {
-    // Code to display the result based on the selected answers
-    var selectedMajor = document.getElementById("major").value;
-    var result = "Your selected major is: " + selectedMajor;
-    document.getElementById("result").innerHTML = result;
-    document.getElementById("result").style.display = "block";
+  function displayRankings() {
+    var uc_scores = [
+      { 'school': 'UC Berkeley', 'score': 90 },
+      { 'school': 'UC Los Angeles', 'score': 88 },
+      { 'school': 'UC San Diego', 'score': 92 },
+      { 'school': 'UC Santa Barbara', 'score': 85 },
+      { 'school': 'UC Irvine', 'score': 87 }
+    ];
+
+    uc_scores.sort(function(a, b) {
+      return b.score - a.score;
+    });
+
+    var rankingsTable = '<h3>UC School Rankings</h3>' +
+                        '<table>' +
+                        '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
+
+    for (var i = 0; i < uc_scores.length; i++) {
+      var ranking = i + 1;
+      var school = uc_scores[i].school;
+      var score = uc_scores[i].score;
+
+      rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
+    }
+
+    rankingsTable += '</table>';
+
+    document.getElementById("rankings").innerHTML = rankingsTable;
   }
+
+  displayRankings();
 </script>
 
 <div data-aos="fade-middle">
@@ -128,5 +152,24 @@ title: College Finder
   </div>
   <div id="result" style="display: none"></div>
 </div>
+<script>
+import pandas as pd
+
+uc_scores = pd.DataFrame({
+    'school': ['UC Berkeley', 'UC Los Angeles', 'UC San Diego', 'UC Santa Barbara', 'UC Irvine'],
+    'score': [90, 88, 92, 85, 87]
+})
+
+
+ranked_uc_scores = uc_scores.sort_values(by='score', ascending=False)
+
+
+ranked_uc_scores.reset_index(drop=True, inplace=True)
+
+
+ranked_uc_scores['ranking'] = ranked_uc_scores.index + 1
+
+print(ranked_uc_scores[['ranking', 'school', 'score']])
+</script>
 </body>
 </html>
