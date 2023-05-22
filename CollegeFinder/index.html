@@ -67,7 +67,8 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <html>
+        <!DOCTYPE html>
+<html>
 <head>
   <title>College Finder</title>
 </head>
@@ -84,15 +85,12 @@ window.onload = wrap_img;
       document.getElementById("question" + questionIndex).style.display = "none";
       questionIndex++;
 
-      // Update score based on user's response
-      if (questionIndex === 2 && response) {
-        score += 2; // Add 2 to the score if the response is true
-      } else if (questionIndex === 3 && response) {
-        score += 3; // Add 3 to the score if the response is true
-      } else if (questionIndex === 4 && response) {
-        score += 1; // Add 1 to the score if the response is true
+      // Increase the score of all UC schools by one
+      if (response) {
+        uc_scores.forEach(function(school) {
+          school.score++;
+        });
       }
-      // Add more conditions to update the score for other questions
 
       if (questionIndex <= 10) {
         document.getElementById("question" + questionIndex).style.display = "block";
@@ -113,12 +111,6 @@ window.onload = wrap_img;
         { 'school': 'UC Riverside', 'score': 79 },
         { 'school': 'UC Merced', 'score': 75 }
       ];
-
-      // Update the scores according to the user's answers
-      uc_scores[0].score += score;
-      uc_scores[1].score += score;
-      uc_scores[2].score += score;
-      // Add more lines to update the scores of other UC schools based on the user's answers
 
       uc_scores.sort(function(a, b) {
         return b.score - a.score;
@@ -250,7 +242,6 @@ window.onload = wrap_img;
 <div id="result" style="display: none"></div>
 </body>
 </html>
-
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/atlas/"></data>
