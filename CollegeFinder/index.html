@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>College Finder | atlas</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="College Finder" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://shruthim0.github.io/atlas/CollegeFinder/" />
+<meta property="og:url" content="https://shruthim0.github.io/atlas/CollegeFinder/" />
+<meta property="og:site_name" content="atlas" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="College Finder" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"College Finder","url":"https://shruthim0.github.io/atlas/CollegeFinder/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/atlas/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shruthim0.github.io/atlas/feed.xml" title="atlas" /><link rel="shortcut icon" type="image/x-icon" href="/atlas/images/pflag.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/atlas/">atlas</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/atlas/CollegeFinder/">College Finder</a><a class="page-link" href="/atlas/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <html>
+<head>
+  <title>College Finder</title>
+</head>
+<body>
+  <div data-aos="fade-middle">
+    <h2>College Finder</h2>
+    <!-- Add the rest of the code here -->
+  </div>
+
+<script>
+  var questionIndex = 1;
+
+  function answer(response) {
+    document.getElementById("question" + questionIndex).style.display = "none";
+    questionIndex++;
+    if (questionIndex <= 10) {
+      document.getElementById("question" + questionIndex).style.display = "block";
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    // Code to display the result based on the selected answers
+    var selectedMajor = document.getElementById("major").value;
+    var result = "Your selected major is: " + selectedMajor;
+    document.getElementById("result").innerHTML = result;
+    document.getElementById("result").style.display = "block";
+  }
+</script>
+
+<div data-aos="fade-middle">
+  <h2>College Finder</h2>
+  <div id="question1">
+    <p>How big do you want your school to be?</p>
+    <button onclick="answer(true)">Small (less than 5,000 students)</button>
+    <button onclick="answer(false)">Medium (5,000-15,000 students)</button>
+    <button onclick="answer(false)">Large (more than 15,000 students)</button>
+  </div>
+  <div id="question2" style="display: none">
+    <p>Which location do you prefer?</p>
+    <button onclick="answer(true)">Urban</button>
+    <button onclick="answer(false)">Suburban</button>
+    <button onclick="answer(false)">Rural</button>
+  </div>
+  <div id="question3" style="display: none">
+    <p>How prestigious do you want your school to be?</p>
+    <button onclick="answer(true)">Not very prestigious</button>
+    <button onclick="answer(false)">Semi-prestigious</button>
+    <button onclick="answer(false)">Very prestigious</button>
+  </div>
+  <div id="question4" style="display: none">
+    <p>What do you prefer?</p>
+    <button onclick="answer(true)">The beach</button>
+    <button onclick="answer(false)">The forest</button>
+    <button onclick="answer(false)">The mountains</button>
+  </div>
+  <div id="question5" style="display: none">
+    <p>How good do you want the sports to be?</p>
+    <button onclick="answer(true)">Very good (high D1)</button>
+    <button onclick="answer(false)">Good (Low D1-D2)</button>
+    <button onclick="answer(false)">Sports do not matter to me much (D3)</button>
+  </div>
+  <div id="question6" style="display: none">
+    <p>What do you want to study?</p>
+    <select id="major">
+      <option value="accounting">Accounting</option>
+      <option value="architecture">Architecture</option>
+      <option value="biology">Biology</option>
+      <option value="business-administration">Business Administration</option>
+      <option value="chemistry">Chemistry</option>
+      <option value="civil-engineering">Civil Engineering</option>
+      <option value="communication-studies">Communication Studies</option>
+      <option value="computer-science">Computer Science</option>
+      <option value="economics">Economics</option>
+      <option value="education">Education</option>
+      <option value="electrical-engineering">Electrical Engineering</option>
+      <option value="english">English</option>
+      <option value="finance">Finance</option>
+      <option value="graphic-design">Graphic Design</option>
+      <option value="history">History</option>
+      <option value="information-technology">Information Technology</option>
+      <option value="international-relations">International Relations</option>
+      <option value="journalism">Journalism</option>
+      <option value="marketing">Marketing</option>
+      <option value="mathematics">Mathematics</option>
+      <option value="mechanical-engineering">Mechanical Engineering</option>
+      <option value="music">Music</option>
+      <option value="nursing">Nursing</option>
+      <option value="philosophy">Philosophy</option>
+      <option value="physics">Physics</option>
+      <option value="political-science">Political Science</option>
+      <option value="psychology">Psychology</option>
+      <option value="sociology">Sociology</option>
+      <option value="theater">Theater</option>
+      <option value="visual-arts">Visual Arts</option>
+    </select>
+  </div>
+  <div id="question7" style="display: none">
+    <p>Do you want to live in a college town?</p>
+    <button onclick="answer(true)">Yes</button>
+    <button onclick="answer(false)">No</button>
+    <button onclick="answer(false)">Doesn't matter</button>
+  </div>
+  <div id="question8" style="display: none">
+    <p>Do you want on-campus housing?</p>
+    <button onclick="answer(true)">Yes</button>
+    <button onclick="answer(false)">No</button>
+    <button onclick="answer(false)">I don't have a preference</button>
+  </div>
+  <div id="question9" style="display: none">
+    <p>Do you want to engage in Greek Life?</p>
+    <button onclick="answer(true)">Yes</button>
+    <button onclick="answer(false)">No</button>
+    <button onclick="answer(false)">Maybe</button>
+  </div>
+  <div id="question10" style="display: none">
+    <p>How much money are you willing to pay?</p>
+    <button onclick="answer(true)">Money is not an issue</button>
+    <button onclick="answer(false)">I am willing to pay quite a bit (30,000-50,000)</button>
+    <button onclick="answer(false)">Cheapest possible (Less than $30,000)</button>
+  </div>
+  <div id="result" style="display: none"></div>
+</div>
+</body>
+</html>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/atlas/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="https://shruthim0.github.io/atlas/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/atlas/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="” https://github.com/nighthawkcoders “" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/atlas/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="” https://twitter.com/NighthawkCoding “" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/atlas/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="” https://www.youtube.com/channel/UClIKOsDS5dsfzFA3zveDT3Q “" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/atlas/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
