@@ -67,8 +67,7 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <!DOCTYPE html>
-<html>
+        <html>
 <head>
   <title>College Finder</title>
 </head>
@@ -85,12 +84,15 @@ window.onload = wrap_img;
       document.getElementById("question" + questionIndex).style.display = "none";
       questionIndex++;
 
-      // Increase the score of all UC schools by one
-      if (response) {
-        uc_scores.forEach(function(school) {
-          school.score++;
-        });
+      // Update score based on user's response
+      if (questionIndex === 2 && response) {
+        score += 2; // Add 2 to the score if the response is true
+      } else if (questionIndex === 3 && response) {
+        score += 3; // Add 3 to the score if the response is true
+      } else if (questionIndex === 4 && response) {
+        score += 1; // Add 1 to the score if the response is true
       }
+      // Add more conditions to update the score for other questions
 
       if (questionIndex <= 10) {
         document.getElementById("question" + questionIndex).style.display = "block";
@@ -111,6 +113,12 @@ window.onload = wrap_img;
         { 'school': 'UC Riverside', 'score': 79 },
         { 'school': 'UC Merced', 'score': 75 }
       ];
+
+      // Update the scores according to the user's answers
+      uc_scores[0].score += score;
+      uc_scores[1].score += score;
+      uc_scores[2].score += score;
+      // Add more lines to update the scores of other UC schools based on the user's answers
 
       uc_scores.sort(function(a, b) {
         return b.score - a.score;
@@ -146,33 +154,33 @@ window.onload = wrap_img;
   <h2>College Finder</h2>
   <div id="question1">
     <p>How big do you want your school to be?</p>
-    <button onclick="answer(true)">Small (less than 5,000 students)</button>
-    <button onclick="answer(false)">Medium (5,000-15,000 students)</button>
-    <button onclick="answer(false)">Large (more than 15,000 students)</button>
+    <button>Small (less than 5,000 students)</button>
+    <button>Medium (5,000-15,000 students)</button>
+    <button>Large (more than 15,000 students)</button>
   </div>
   <div id="question2" style="display: none">
     <p>Which location do you prefer?</p>
-    <button onclick="answer(true)">Urban</button>
-    <button onclick="answer(false)">Suburban</button>
-    <button onclick="answer(false)">Rural</button>
+    <button>Urban</button>
+    <button>Suburban</button>
+    <button>Rural</button>
   </div>
   <div id="question3" style="display: none">
     <p>How prestigious do you want your school to be?</p>
-    <button onclick="answer(true)">Not very prestigious</button>
-    <button onclick="answer(false)">Semi-prestigious</button>
-    <button onclick="answer(false)">Very prestigious</button>
+    <button>Not very prestigious</button>
+    <button>Semi-prestigious</button>
+    <button>Very prestigious</button>
   </div>
   <div id="question4" style="display: none">
     <p>What do you prefer?</p>
-    <button onclick="answer(true)">The beach</button>
-    <button onclick="answer(false)">The forest</button>
-    <button onclick="answer(false)">The mountains</button>
+    <button>The beach</button>
+    <button>The forest</button>
+    <button>The mountains</button>
   </div>
   <div id="question5" style="display: none">
     <p>How good do you want the sports to be?</p>
-    <button onclick="answer(true)">Very good (high D1)</button>
-    <button onclick="answer(false)">Good (Low D1-D2)</button>
-    <button onclick="answer(false)">Sports do not matter to me much (D3)</button>
+    <button>Very good (high D1)</button>
+    <button>Good (Low D1-D2)</button>
+    <button>Sports do not matter to me much (D3)</button>
   </div>
   <div id="question6" style="display: none">
     <p>What do you want to study?</p>
@@ -209,31 +217,31 @@ window.onload = wrap_img;
       <option value="visual-arts">Visual Arts</option>
     </select>
       <br>
-    <button onclick="answer(false)">Submit</button>
+    <button">Submit</button>
   </div>
   <div id="question7" style="display: none">
     <p>Do you want to live in a college town?</p>
-    <button onclick="answer(true)">Yes</button>
-    <button onclick="answer(false)">No</button>
-    <button onclick="answer(false)">Doesn't matter</button>
+    <button>Yes</button>
+    <button>No</button>
+    <button>Doesn't matter</button>
   </div>
   <div id="question8" style="display: none">
     <p>Do you want on-campus housing?</p>
-    <button onclick="answer(true)">Yes</button>
-    <button onclick="answer(false)">No</button>
-    <button onclick="answer(false)">I don't have a preference</button>
+    <button>Yes</button>
+    <button>No</button>
+    <button>I don't have a preference</button>
   </div>
   <div id="question9" style="display: none">
     <p>Do you want to engage in Greek Life?</p>
-    <button onclick="answer(true)">Yes</button>
-    <button onclick="answer(false)">No</button>
-    <button onclick="answer(false)">Maybe</button>
+    <button>Yes</button>
+    <button>No</button>
+    <button>Maybe</button>
   </div>
   <div id="question10" style="display: none">
     <p>How much money are you willing to pay?</p>
-    <button onclick="answer(true)">Money is not an issue</button>
-    <button onclick="answer(false)">I am willing to pay quite a bit (30,000-50,000)</button>
-    <button onclick="answer(false)">Cheapest possible (Less than $30,000)</button>
+    <button">Money is not an issue</button>
+    <button>I am willing to pay quite a bit (30,000-50,000)</button>
+    <button>Cheapest possible (Less than $30,000)</button>
   </div>
   <div id="result" style="display: none"></div>
 </div>
@@ -242,6 +250,7 @@ window.onload = wrap_img;
 <div id="result" style="display: none"></div>
 </body>
 </html>
+
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/atlas/"></data>
