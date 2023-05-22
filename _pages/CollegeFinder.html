@@ -5,25 +5,87 @@ title: College Finder
 ---
 
 <html>
+<head>
+  <title>College Finder</title>
+</head>
 <body>
   <div data-aos="fade-middle">
     <h2>College Finder</h2>
-    <!-- Add the rest of the code here -->
   </div>
 
-<script>
-  var questionIndex = 1;
+  <script>
+    var questionIndex = 1;
+    var score = 0;
 
-  function answer(response) {
-    document.getElementById("question" + questionIndex).style.display = "none";
-    questionIndex++;
-    if (questionIndex <= 10) {
-      document.getElementById("question" + questionIndex).style.display = "block";
-    } else {
-      showResult();
+    function answer(response) {
+      document.getElementById("question" + questionIndex).style.display = "none";
+      questionIndex++;
+
+      // Update score based on user's response
+      if (questionIndex === 2 && response) {
+        score += 2; // Add 2 to the score if the response is true
+      } else if (questionIndex === 3 && response) {
+        score += 3; // Add 3 to the score if the response is true
+      } else if (questionIndex === 4 && response) {
+        score += 1; // Add 1 to the score if the response is true
+      }
+      // Add more conditions to update the score for other questions
+
+      if (questionIndex <= 10) {
+        document.getElementById("question" + questionIndex).style.display = "block";
+      } else {
+        showResult();
+      }
     }
-  }
-</script>
+
+    function displayRankings() {
+      var uc_scores = [
+        { 'school': 'UC Berkeley', 'score': 90 },
+        { 'school': 'UC Los Angeles', 'score': 88 },
+        { 'school': 'UC San Diego', 'score': 92 },
+        { 'school': 'UC Santa Barbara', 'score': 85 },
+        { 'school': 'UC Irvine', 'score': 87 },
+        { 'school': 'UC Santa Cruz', 'score': 82 },
+        { 'school': 'UC Davis', 'score': 84 },
+        { 'school': 'UC Riverside', 'score': 79 },
+        { 'school': 'UC Merced', 'score': 75 }
+      ];
+
+      // Update the scores according to the user's answers
+      uc_scores[0].score += score;
+      uc_scores[1].score += score;
+      uc_scores[2].score += score;
+      // Add more lines to update the scores of other UC schools based on the user's answers
+
+      uc_scores.sort(function(a, b) {
+        return b.score - a.score;
+      });
+
+      var rankingsTable = '<h3>UC School Rankings</h3>' +
+                          '<table>' +
+                          '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
+
+      for (var i = 0; i < uc_scores.length; i++) {
+        var ranking = i + 1;
+        var school = uc_scores[i].school;
+        var score = uc_scores[i].score;
+
+        rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
+      }
+
+      rankingsTable += '</table>';
+
+      document.getElementById("rankings").innerHTML = rankingsTable;
+    }
+
+    function showResult() {
+      document.getElementById("result").innerHTML = "Here is your college recommendation based on your answers.";
+      displayRankings();
+    }
+
+    // Call the displayRankings() function
+    displayRankings();
+  </script>
 
 <div data-aos="fade-middle">
   <h2>College Finder</h2>
@@ -123,43 +185,5 @@ title: College Finder
 <div id="rankings"></div> <!-- Add this line -->
 
 <div id="result" style="display: none"></div>
-<script>
-  function displayRankings() {
-      var uc_scores = [
-        { 'school': 'UC Berkeley', 'score': 90 },
-        { 'school': 'UC Los Angeles', 'score': 88 },
-        { 'school': 'UC San Diego', 'score': 92 },
-        { 'school': 'UC Santa Barbara', 'score': 85 },
-        { 'school': 'UC Irvine', 'score': 87 },
-        { 'school': 'UC Santa Cruz', 'score': 82 },
-        { 'school': 'UC Davis', 'score': 84 },
-        { 'school': 'UC Riverside', 'score': 79 },
-        { 'school': 'UC Merced', 'score': 75 }
-      ];
-
-      uc_scores.sort(function(a, b) {
-        return b.score - a.score;
-      });
-
-      var rankingsTable = '<h3>UC School Rankings</h3>' +
-                          '<table>' +
-                          '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
-
-      for (var i = 0; i < uc_scores.length; i++) {
-        var ranking = i + 1;
-        var school = uc_scores[i].school;
-        var score = uc_scores[i].score;
-
-        rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
-      }
-
-      rankingsTable += '</table>';
-
-      document.getElementById("rankings").innerHTML = rankingsTable;
-    }
-
-    // Call the displayRankings() function
-    displayRankings();
-</script>
 </body>
 </html>
