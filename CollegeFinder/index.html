@@ -193,7 +193,11 @@ window.onload = wrap_img;
         { 'school': 'UC Los Angeles', 'score': 88 },
         { 'school': 'UC San Diego', 'score': 92 },
         { 'school': 'UC Santa Barbara', 'score': 85 },
-        { 'school': 'UC Irvine', 'score': 87 }
+        { 'school': 'UC Irvine', 'score': 87 },
+        { 'school': 'UC Santa Cruz', 'score': 82 },
+        { 'school': 'UC Davis', 'score': 84 },
+        { 'school': 'UC Riverside', 'score': 79 },
+        { 'school': 'UC Merced', 'score': 75 }
       ];
 
       uc_scores.sort(function(a, b) {
@@ -217,6 +221,7 @@ window.onload = wrap_img;
       document.getElementById("rankings").innerHTML = rankingsTable;
     }
 
+    // Call the displayRankings() function
     displayRankings();
 </script>
 </body>
