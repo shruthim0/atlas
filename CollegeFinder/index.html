@@ -86,38 +86,6 @@ window.onload = wrap_img;
       showResult();
     }
   }
-
-  function displayRankings() {
-    var uc_scores = [
-      { 'school': 'UC Berkeley', 'score': 90 },
-      { 'school': 'UC Los Angeles', 'score': 88 },
-      { 'school': 'UC San Diego', 'score': 92 },
-      { 'school': 'UC Santa Barbara', 'score': 85 },
-      { 'school': 'UC Irvine', 'score': 87 }
-    ];
-
-    uc_scores.sort(function(a, b) {
-      return b.score - a.score;
-    });
-
-    var rankingsTable = '<h3>UC School Rankings</h3>' +
-                        '<table>' +
-                        '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
-
-    for (var i = 0; i < uc_scores.length; i++) {
-      var ranking = i + 1;
-      var school = uc_scores[i].school;
-      var score = uc_scores[i].score;
-
-      rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
-    }
-
-    rankingsTable += '</table>';
-
-    document.getElementById("rankings").innerHTML = rankingsTable;
-  }
-
-  displayRankings();
 </script>
 
 <div data-aos="fade-middle">
@@ -215,6 +183,39 @@ window.onload = wrap_img;
   </div>
   <div id="result" style="display: none"></div>
 </div>
+<script>
+  function displayRankings() {
+      var uc_scores = [
+        { 'school': 'UC Berkeley', 'score': 90 },
+        { 'school': 'UC Los Angeles', 'score': 88 },
+        { 'school': 'UC San Diego', 'score': 92 },
+        { 'school': 'UC Santa Barbara', 'score': 85 },
+        { 'school': 'UC Irvine', 'score': 87 }
+      ];
+
+      uc_scores.sort(function(a, b) {
+        return b.score - a.score;
+      });
+
+      var rankingsTable = '<h3>UC School Rankings</h3>' +
+                          '<table>' +
+                          '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
+
+      for (var i = 0; i < uc_scores.length; i++) {
+        var ranking = i + 1;
+        var school = uc_scores[i].school;
+        var score = uc_scores[i].score;
+
+        rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
+      }
+
+      rankingsTable += '</table>';
+
+      document.getElementById("rankings").innerHTML = rankingsTable;
+    }
+
+    displayRankings();
+</script>
 </body>
 </html>
 
