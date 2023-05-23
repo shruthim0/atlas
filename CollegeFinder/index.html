@@ -74,6 +74,17 @@ window.onload = wrap_img;
 
 
 <script>
+  var uc_scores = [
+  { name: "UC Berkeley", score: 0 },
+  { name: "UC Los Angeles", score: 0 },
+  { name: "UC San Diego", score: 0 },
+  { name: "UC Santa Barbara", score: 0 },
+  { name: "UC Irvine", score: 0 },
+  { name: "UC Santa Cruz", score: 0 },
+  { name: "UC Davis", score: 0 },
+  { name: "UC Riverside", score: 0 },
+  { name: "UC Merced", score: 0 }
+];
  var questionIndex = 1;
 
  function answer(response) {
@@ -236,6 +247,26 @@ window.onload = wrap_img;
   }
 }
 
+function showResult() {
+  // Sort the UC scores based on the score value
+  uc_scores.sort((a, b) => b.score - a.score);
+
+  // Display the UC scores in the table
+  var table = document.getElementById("resultTable");
+  var tbody = table.getElementsByTagName("tbody")[0];
+  tbody.innerHTML = "";
+
+  for (var i = 0; i < uc_scores.length; i++) {
+    var row = tbody.insertRow(i);
+    var nameCell = row.insertCell(0);
+    var scoreCell = row.insertCell(1);
+    nameCell.innerHTML = uc_scores[i].name;
+    scoreCell.innerHTML = uc_scores[i].score;
+  }
+
+  // Show the result section
+  document.getElementById("resultSection").style.display = "block";
+}
 </script>
 
 
