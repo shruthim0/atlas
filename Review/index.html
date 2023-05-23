@@ -77,6 +77,7 @@ window.onload = wrap_img;
 <table id="flaskTable" class="table" style="width:100%">
     <thead id="flaskHead">
         <tr>
+            <th>Number</th>
             <th>School</th>
             <th>Review</th>
         </tr>
@@ -97,6 +98,7 @@ window.onload = wrap_img;
       for (const row of data) {
         // BUG warning/resolution - DataTable requires row to be single append
         $('#flaskBody').append('<tr><td>' + 
+            row.id + '</td><td>' +
             row.school + '</td><td>' + 
             row.review + '</td><td>' );
       }
@@ -104,7 +106,7 @@ window.onload = wrap_img;
       $("#flaskTable").DataTable();
     })
     .catch(error => {
-      console.error('Error:', error);
+      console.error('Error!:', error);
     });
   });
 </script>
