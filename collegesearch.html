@@ -132,7 +132,6 @@ window.onload = wrap_img;
     </thead>
     <tbody id="flaskBody"></tbody>
 </table>
-
 <script>
   $(document).ready(function() {
     fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
@@ -162,43 +161,6 @@ window.onload = wrap_img;
     });
   });
 </script>
-
-<html>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Define the search function
-            function search() {
-                var searchTerm = $('#searchInput').val();
-
-                // Make an AJAX request to your Flask route to fetch the search results
-                $.ajax({
-                    type: 'GET',
-                    url: '/search',
-                    data: { term: searchTerm },
-                    success: function(response) {
-                        // Replace the table body with the updated search results
-                        $('#tableBody').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error:', error);
-                    }
-                });
-            }
-
-            // Bind the search function to the search button click event
-            $('#searchButton').click(search);
-
-            // Bind the search function to the Enter key press event in the search input
-            $('#searchInput').keypress(function(event) {
-                if (event.keyCode === 13) {
-                    search();
-                } 
-            });
-        });
-    </script>
-</head>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/atlas/"></data>
