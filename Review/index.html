@@ -4,20 +4,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>atlas</title>
+<title>UCReview | atlas</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="atlas" />
+<meta property="og:title" content="UCReview" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="https://shruthim0.github.io/atlas/" />
-<meta property="og:url" content="https://shruthim0.github.io/atlas/" />
+<link rel="canonical" href="https://shruthim0.github.io/atlas/Review/" />
+<meta property="og:url" content="https://shruthim0.github.io/atlas/Review/" />
 <meta property="og:site_name" content="atlas" />
-<meta property="og:image" content="https://shruthim0.github.io/atlas/images/logo.png" />
 <meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://shruthim0.github.io/atlas/images/logo.png" />
-<meta property="twitter:title" content="atlas" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="UCReview" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","headline":"atlas","image":"https://shruthim0.github.io/atlas/images/logo.png","name":"atlas","url":"https://shruthim0.github.io/atlas/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"UCReview","url":"https://shruthim0.github.io/atlas/Review/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/atlas/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shruthim0.github.io/atlas/feed.xml" title="atlas" /><link rel="shortcut icon" type="image/x-icon" href="/atlas/images/pflag.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -69,55 +67,48 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><html>
-<body style="background-color:#355dc0;">
-</body>
-</html>
+        <head>
+    <!-- load jQuery and DataTables syle and scripts -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>var define = null;</script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+</head>
+<table id="flaskTable" class="table" style="width:100%">
+    <thead id="flaskHead">
+        <tr>
+            <th>School</th>
+            <th>Review</th>
+        </tr>
+    </thead>
+    <tbody id="flaskBody"></tbody>
+</table>
 
-<h1 align="center" style="color: #fbfcfd"> Atlas</h1>
-<h2 align="center" style="color: #060053"> Finding the perfect UC for you</h2>
+<script>
+  $(document).ready(function() {
+    fetch('http://172.27.138.205:8086/api/reviews/', { mode: 'cors' })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('API response failed');
+      }
+      return response.json();
+    })
+    .then(data => {
+      for (const row of data) {
+        // BUG warning/resolution - DataTable requires row to be single append
+        $('#flaskBody').append('<tr><td>' + 
+            row.school + '</td><td>' + 
+            row.review + '</td><td>' );
+      }
+      // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
+      $("#flaskTable").DataTable();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+</script>
 
-<html>
-<body>
-
-
-
-</body>
-</html>
-
-<h1 id="posts">Posts</h1>
-
-
-
-  
-
-  <!-- Hide posts if front matter flag hide:true -->
-  
-  
-
-  <!-- Sort posts by rank, then date -->
-  
-  
-  
-
- 
-  
-
-   <!-- Assemble final sorted posts array -->
-  
-  <ul class="post-list"><li><h3>
-    <a class="post-link" href="/atlas/2023/05/23/table.html">
-    Table
-    </a>
-</h3><p class="post-meta">May 23, 2023</p>
-</li><li><h3>
-    <a class="post-link" href="/atlas/2023/05/12/atlas.html">
-    Atlas
-    </a>
-</h3><p class="post-meta">May 12, 2023</p>
-</li></ul>
-
-    </div>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/atlas/"></data>
