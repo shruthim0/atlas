@@ -70,24 +70,172 @@ window.onload = wrap_img;
         <html>
 <body>
  <div data-aos="fade-middle">
-   <h2>College Finder</h2>
-   <!-- Add the rest of the code here -->
  </div>
 
 
 <script>
  var questionIndex = 1;
 
-
  function answer(response) {
-   document.getElementById("question" + questionIndex).style.display = "none";
-   questionIndex++;
-   if (questionIndex <= 10) {
-     document.getElementById("question" + questionIndex).style.display = "block";
-   } else {
-     showResult();
-   }
- }
+  document.getElementById("question" + questionIndex).style.display = "none";
+  questionIndex++;
+
+  // Update the scores based on the user response
+  if (questionIndex === 1) {
+    if (response === 'small') {
+      uc_scores[0].score += 2; // UC Berkeley
+      uc_scores[5].score += 2; // UC Santa Cruz
+      uc_scores[7].score += 2; // UC Riverside
+      uc_scores[8].score += 2; // UC Merced
+    } else if (response === 'medium') {
+      uc_scores[2].score += 1; // UC San Diego
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[6].score += 1; // UC Davis
+    } else if (response === 'large') {
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[3].score += 1; // UC Santa Barbara
+    }
+  } else if (questionIndex === 2) {
+    if (response === 'urban') {
+      uc_scores[0].score += 1; // UC Berkeley
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[2].score += 1; // UC San Diego
+      uc_scores[4].score += 1; // UC Irvine
+    } else if (response === 'suburban') {
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[6].score += 1; // UC Davis
+      uc_scores[8].score += 1; // UC Merced
+    } else if (response === 'rural') {
+      uc_scores[5].score -= 1; // UC Santa Cruz
+      uc_scores[7].score -= 1; // UC Riverside
+    }
+  } else if (questionIndex === 3) {
+    // Question 3 scoring
+    if (response === 'notprestigious') {
+      uc_scores[8].score -= 1; // UC Merced
+    } else if (response === 'semiprestigious') {
+      uc_scores[0].score += 1; // UC Berkeley
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[2].score += 1; // UC San Diego
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[6].score += 1; // UC Davis
+    } else if (response === 'veryprestigious') {
+      uc_scores[5].score += 1; // UC Santa Cruz
+      uc_scores[7].score += 1; // UC Riverside
+    }
+  } else if (questionIndex === 4) {
+    // Question 4 scoring
+    if (response === 'beach') {
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[8].score += 1; // UC Merced
+    } else if (response === 'forest') {
+      uc_scores[0].score += 1; // UC Berkeley
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[2].score += 1; // UC San Diego
+      uc_scores[5].score += 1; // UC Santa Cruz
+    } else if (response === 'mountains') {
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[6].score += 1; // UC Davis
+      uc_scores[7].score += 1; // UC Riverside
+    }
+  } else if (questionIndex === 5) {
+    // Question 5 scoring
+    if (response === 'verygood') {
+      uc_scores[0].score += 1; // UC Berkeley
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[2].score += 1; // UC San Diego
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[6].score += 1; // UC Davis
+    } else if (response === 'good') {
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[5].score += 1; // UC Santa Cruz
+      uc_scores[7].score += 1; // UC Riverside
+      uc_scores[8].score += 1; // UC Merced
+    } else if (response === 'notgood') {
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[6].score += 1; // UC Davis
+      uc_scores[7].score += 1; // UC Riverside
+    }
+  } else if (questionIndex === 7) {
+    // Question 7 scoring
+    if (response === 'collegetown') {
+      uc_scores[0].score += 1; // UC Berkeley
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[2].score += 1; // UC San Diego
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[5].score += 1; // UC Santa Cruz
+      uc_scores[6].score += 1; // UC Davis
+      uc_scores[7].score += 1; // UC Riverside
+      uc_scores[8].score += 1; // UC Merced
+    } else if (response === 'nocollegetown') {
+      uc_scores[7].score += 1; // UC Riverside
+      uc_scores[8].score += 1; // UC Merced
+    } else if (response === 'maybecollegetown') {
+      uc_scores[7].score += 1; // UC Riverside
+      uc_scores[8].score += 1; // UC Merced
+    }
+  } else if (questionIndex === 8) {
+    // Question 8 scoring
+    if (response === 'oncampus') {
+      uc_scores[0].score += 1; // UC Berkeley
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[2].score += 1; // UC San Diego
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[5].score += 1; // UC Santa Cruz
+      uc_scores[6].score += 1; // UC Davis
+      uc_scores[8].score += 1; // UC Merced
+    } else if (response === 'offcampus') {
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[7].score += 1; // UC Riverside
+    } else if (response === 'nopreference') {
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[7].score += 1; // UC Riverside
+    }
+  } else if (questionIndex === 9) {
+    // Question 9 scoring
+    if (response === 'greeklife') {
+      uc_scores[0].score += 1; // UC Berkeley
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[2].score += 1; // UC San Diego
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[6].score += 1; // UC Davis
+      uc_scores[7].score += 1; // UC Riverside
+    } else if (response === 'nogreeklife') {
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[5].score += 1; // UC Santa Cruz
+      uc_scores[8].score += 1; // UC Merced
+    } else if (response === 'maybegreeklife') {
+      // No specific score adjustments
+    }
+  } else if (questionIndex === 10) {
+    // Question 10 scoring
+    if (response === 'bigmoney') {
+      uc_scores[0].score += 1; // UC Berkeley
+      uc_scores[1].score += 1; // UC Los Angeles
+      uc_scores[2].score += 1; // UC San Diego
+    } else if (response === 'midmoney') {
+      uc_scores[3].score += 1; // UC Santa Barbara
+      uc_scores[4].score += 1; // UC Irvine
+      uc_scores[6].score += 1; // UC Davis
+    } else if (response === 'lowmoney') {
+      uc_scores[5].score += 1; // UC Santa Cruz
+      uc_scores[7].score += 1; // UC Riverside
+      uc_scores[8].score += 1; // UC Merced
+    }
+  }
+  
+  
+  // Add conditions for other question indices as needed
+
+  if (questionIndex <= 10) {
+    document.getElementById("question" + questionIndex).style.display = "block";
+  } else {
+    showResult();
+  }
+}
+
 </script>
 
 
@@ -186,7 +334,6 @@ window.onload = wrap_img;
  </div>
  <div id="result" style="display: none"></div>
 </div>
-<div id="rankings"></div> <!-- Add this line -->
 
 
 <div id="result" style="display: none"></div>
