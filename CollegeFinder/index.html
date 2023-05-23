@@ -74,6 +74,7 @@ window.onload = wrap_img;
 
 
 <script>
+  console.log("Initializing uc_scores variable");
 // Define an array to store the scores for each UC school
 var uc_scores = [
     { name: "UC Berkeley", score: 0 },
@@ -86,7 +87,7 @@ var uc_scores = [
     { name: "UC Riverside", score: 0 },
     { name: "UC Merced", score: 0 }
   ];
-
+  console.log("uc_scores initialized:", uc_scores);
   var questionIndex = 1;
 
   function answer(response) {
