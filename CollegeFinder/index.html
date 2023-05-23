@@ -93,11 +93,12 @@ window.onload = wrap_img;
 
   // Update the scores based on the user response
   if (questionIndex === 1) {
-    if (response === 'small') {
-      uc_scores[0].score += 2; // UC Berkeley
-      uc_scores[5].score += 2; // UC Santa Cruz
-      uc_scores[7].score += 2; // UC Riverside
-      uc_scores[8].score += 2; // UC Merced
+    for (let i = 0; i < uc_scores.length; i++) {
+        if (uc_scores[i].school === 'UC Los Angeles') {
+          uc_scores[i].score += 1;
+          break;
+        }
+      }
     } else if (response === 'medium') {
       uc_scores[2].score += 1; // UC San Diego
       uc_scores[4].score += 1; // UC Irvine
@@ -105,7 +106,6 @@ window.onload = wrap_img;
     } else if (response === 'large') {
       uc_scores[1].score += 1; // UC Los Angeles
       uc_scores[3].score += 1; // UC Santa Barbara
-    }
   } else if (questionIndex === 2) {
     if (response === 'urban') {
       uc_scores[0].score += 1; // UC Berkeley
