@@ -69,7 +69,6 @@ window.onload = wrap_img;
       <div class="wrapper">
         <html>
 <head>
-    <title>Search Functionality</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -99,15 +98,19 @@ window.onload = wrap_img;
             $('#searchInput').keypress(function(event) {
                 if (event.keyCode === 13) {
                     search();
-                }
+                } 
             });
         });
     </script>
 </head>
 <body>
+    <title>College Search</title>
+    <br>
+    <br>
     <input type="text" id="searchInput" placeholder="Search...">
+````<br>
     <button id="searchButton">Search</button>
-
+    <br>
     <table>
         <thead>
             <tr>
@@ -115,6 +118,9 @@ window.onload = wrap_img;
                 <th>College</th>
                 <th>City</th>
                 <th>Acceptance Rate</th>
+                <th>Location Type</th>
+                <th>Student to Faculty Ratio</th>
+                <th>Top 3 Majors</th>
             </tr>
         </thead>
         <tbody id="tableBody">
