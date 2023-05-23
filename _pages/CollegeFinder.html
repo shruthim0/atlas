@@ -10,41 +10,54 @@ title: College Finder
 
 
 <script>
- var questionIndex = 1;
+// Define an array to store the scores for each UC school
+var uc_scores = [
+    { name: "UC Berkeley", score: 0 },
+    { name: "UC Los Angeles", score: 0 },
+    { name: "UC San Diego", score: 0 },
+    { name: "UC Santa Barbara", score: 0 },
+    { name: "UC Irvine", score: 0 },
+    { name: "UC Santa Cruz", score: 0 },
+    { name: "UC Davis", score: 0 },
+    { name: "UC Riverside", score: 0 },
+    { name: "UC Merced", score: 0 }
+  ];
 
- function answer(response) {
-  document.getElementById("question" + questionIndex).style.display = "none";
-  questionIndex++;
+  var questionIndex = 1;
 
-  // Update the scores based on the user response
-  if (questionIndex === 1) {
-    if (response === 'small') {
-      uc_scores[0].score += 2; // UC Berkeley
-      uc_scores[5].score += 2; // UC Santa Cruz
-      uc_scores[7].score += 2; // UC Riverside
-      uc_scores[8].score += 2; // UC Merced
-    } else if (response === 'medium') {
-      uc_scores[2].score += 1; // UC San Diego
-      uc_scores[4].score += 1; // UC Irvine
-      uc_scores[6].score += 1; // UC Davis
-    } else if (response === 'large') {
-      uc_scores[1].score += 1; // UC Los Angeles
-      uc_scores[3].score += 1; // UC Santa Barbara
-    }
-  } else if (questionIndex === 2) {
-    if (response === 'urban') {
-      uc_scores[0].score += 1; // UC Berkeley
-      uc_scores[1].score += 1; // UC Los Angeles
-      uc_scores[2].score += 1; // UC San Diego
-      uc_scores[4].score += 1; // UC Irvine
-    } else if (response === 'suburban') {
-      uc_scores[3].score += 1; // UC Santa Barbara
-      uc_scores[6].score += 1; // UC Davis
-      uc_scores[8].score += 1; // UC Merced
-    } else if (response === 'rural') {
-      uc_scores[5].score -= 1; // UC Santa Cruz
-      uc_scores[7].score -= 1; // UC Riverside
-    }
+  function answer(response) {
+    document.getElementById("question" + questionIndex).style.display = "none";
+    questionIndex++;
+
+    // Update the scores based on the user response
+    if (questionIndex === 1) {
+      if (response === "small") {
+        uc_scores[0].score += 2; // UC Berkeley
+        uc_scores[5].score += 2; // UC Santa Cruz
+        uc_scores[7].score += 2; // UC Riverside
+        uc_scores[8].score += 2; // UC Merced
+      } else if (response === "medium") {
+        uc_scores[2].score += 1; // UC San Diego
+        uc_scores[4].score += 1; // UC Irvine
+        uc_scores[6].score += 1; // UC Davis
+      } else if (response === "large") {
+        uc_scores[1].score += 1; // UC Los Angeles
+        uc_scores[3].score += 1; // UC Santa Barbara
+      }
+    } else if (questionIndex === 2) {
+      if (response === "urban") {
+        uc_scores[0].score += 1; // UC Berkeley
+        uc_scores[1].score += 1; // UC Los Angeles
+        uc_scores[2].score += 1; // UC San Diego
+        uc_scores[4].score += 1; // UC Irvine
+      } else if (response === "suburban") {
+        uc_scores[3].score += 1; // UC Santa Barbara
+        uc_scores[6].score += 1; // UC Davis
+        uc_scores[8].score += 1; // UC Merced
+      } else if (response === "rural") {
+        uc_scores[5].score -= 1; // UC Santa Cruz
+        uc_scores[7].score -= 1; // UC Riverside
+      }
   } else if (questionIndex === 3) {
     // Question 3 scoring
     if (response === 'notprestigious') {
@@ -172,6 +185,21 @@ title: College Finder
   }
 }
 
+  // Function to calculate the final result
+  function showResult() {
+    // Sort the UC scores in descending order based on the score
+    uc_scores.sort(function (a, b) {
+      return b.score - a.score;
+    });
+
+    // Display the result
+    var result = "";
+    for (var i = 0; i < uc_scores.length; i++) {
+      result += uc_scores[i].name + "<br>";
+    }
+    document.getElementById("result").innerHTML = result;
+  }
+
 </script>
 
 
@@ -274,49 +302,5 @@ title: College Finder
 
 <div id="result" style="display: none"></div>
 <div id="rankings"></div>
-<script>
- function displayRankings() {
-     var uc_scores = [
-       { 'school': 'UC Berkeley', 'score': 90 },
-       { 'school': 'UC Los Angeles', 'score': 88 },
-       { 'school': 'UC San Diego', 'score': 92 },
-       { 'school': 'UC Santa Barbara', 'score': 85 },
-       { 'school': 'UC Irvine', 'score': 87 },
-       { 'school': 'UC Santa Cruz', 'score': 82 },
-       { 'school': 'UC Davis', 'score': 84 },
-       { 'school': 'UC Riverside', 'score': 79 },
-       { 'school': 'UC Merced', 'score': 75 }
-     ];
-
-
-     uc_scores.sort(function(a, b) {
-       return b.score - a.score;
-     });
-
-
-     var rankingsTable = '<h3>UC School Rankings</h3>' +
-                         '<table>' +
-                         '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
-
-
-     for (var i = 0; i < uc_scores.length; i++) {
-       var ranking = i + 1;
-       var school = uc_scores[i].school;
-       var score = uc_scores[i].score;
-
-
-       rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
-     }
-
-
-     rankingsTable += '</table>';
-
-
-     document.getElementById("rankings").innerHTML = rankingsTable;
-   }
-
-   // Call the displayRankings() function
-   displayRankings();
-</script>
 </body>
 </html>
