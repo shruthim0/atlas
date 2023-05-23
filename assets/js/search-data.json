@@ -49,6 +49,17 @@
   
 
   
+      ,"page2": {
+          "title": "College Search",
+          "content": "Search Functionality . Search id College City Acceptance Rate . .",
+          "url": "https://shruthim0.github.io/atlas/collegesearch",
+          "relUrl": "/collegesearch",
+          "date": ""
+      }
+      
+  
+
+  
 
   
   
@@ -71,7 +82,7 @@
   
 
   
-      ,"page10": {
+      ,"page11": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",
