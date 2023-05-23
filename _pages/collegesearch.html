@@ -10,6 +10,51 @@ title: College Search
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </head>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Define the search function
+            function search() {
+                var searchTerm = $('#searchInput').val();
+
+                // Make an AJAX request to your Flask route to fetch the search results
+                $.ajax({
+                    type: 'GET',
+                    url: '/search',
+                    data: { term: searchTerm },
+                    success: function(response) {
+                        // Replace the table body with the updated search results
+                        $('#tableBody').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+
+            // Bind the search function to the search button click event
+            $('#searchButton').click(search);
+
+            // Bind the search function to the Enter key press event in the search input
+            $('#searchInput').keypress(function(event) {
+                if (event.keyCode === 13) {
+                    search();
+                } 
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <title>College Search</title>
+    <br>
+    <br>
+    <input type="text" id="searchInput" placeholder="Search...">
+````<br>
+    <button id="searchButton">Search</button>
+    <br>
+
 <table id="flaskTable" class="table" style="width:100%">
     <thead id="flaskHead">
         <tr>
@@ -91,30 +136,3 @@ title: College Search
         });
     </script>
 </head>
-
-<body>
-    <title>College Search</title>
-    <br>
-    <br>
-    <input type="text" id="searchInput" placeholder="Search...">
-````<br>
-    <button id="searchButton">Search</button>
-    <br>
-    <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>College</th>
-                <th>City</th>
-                <th>Acceptance Rate</th>
-                <th>Location Type</th>
-                <th>Student to Faculty Ratio</th>
-                <th>Top 3 Majors</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <!-- The table body will be dynamically populated with search results -->
-        </tbody>
-    </table>
-</body>
-</html>
