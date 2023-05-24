@@ -89,12 +89,12 @@ window.onload = wrap_img;
   if (response === 'small') {
     // Find UC Berkeley in the uc_scores array
     var ucBerkeley = uc_scores.find(function (uc) {
-      return uc.school === 'UC Berkeley';
+      return uc.name === 'UC Berkeley';
     });
 
     // Find UC Los Angeles in the uc_scores array
     var ucLosAngeles = uc_scores.find(function (uc) {
-      return uc.school === 'UC Los Angeles';
+      return uc.name === 'UC Los Angeles';
     });
 
     if (ucBerkeley) {
