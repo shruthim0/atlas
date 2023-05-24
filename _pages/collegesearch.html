@@ -51,23 +51,27 @@ title: College Search
     <br>
     <br>
     <input type="text" id="searchInput" placeholder="Search...">
-````<br>
     <button id="searchButton">Search</button>
     <br>
-
-<table id="flaskTable" class="table" style="width:100%">
-    <thead id="flaskHead">
-        <tr>
-            <th>ID</th>
-            <th>College</th>
-            <th>City</th>
-            <th>Acceptance Rate</th>
-            <th>Location Type</th>
-            <th>Student to Faculty Ratio</th>
-            <th>Top 3 Majors</th>
-        </tr>
-    </thead>
-    <tbody id="flaskBody"></tbody>
+    <br>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>College</th>
+                <th>City</th>
+                <th>Acceptance Rate</th>
+                <th>Location Type</th>
+                <th>Student to Faculty Ratio</th>
+                <th>Top 3 Majors</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- The table body will be dynamically populated with search results -->
+        </tbody>
+    </table>
+</body>
 </table>
 <script>
   $(document).ready(function() {
@@ -135,32 +139,5 @@ title: College Search
         });
     </script>
 </head>
-
-<body>
-    <title>College Search</title>
-    <br>
-    <br>
-    <input type="text" id="searchInput" placeholder="Search...">
-    <button id="searchButton">Search</button>
-    <br>
-    <br>
-    <br>
-    <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>College</th>
-                <th>City</th>
-                <th>Acceptance Rate</th>
-                <th>Location Type</th>
-                <th>Student to Faculty Ratio</th>
-                <th>Top 3 Majors</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <!-- The table body will be dynamically populated with search results -->
-        </tbody>
-    </table>
-</body>
 </html>
 </head>
