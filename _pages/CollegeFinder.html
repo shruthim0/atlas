@@ -16,6 +16,12 @@ title: College Finder
   
   document.getElementById("question" + questionIndex).style.display = "none";
   questionIndex++;
+
+  if (questionIndex <= 10) {
+    document.getElementById("question" + questionIndex).style.display = "block";
+  } else {
+    showResult();
+  }
   if (response === 'small') {
     // Find UC Berkeley in the uc_scores array
     var ucBerkeley = uc_scores.find(function (uc) {
@@ -36,12 +42,6 @@ title: College Finder
       // Increase the score of UC Los Angeles by 1
       ucLosAngeles.score += 1;
     }
-  }
-  
-  if (questionIndex <= 10) {
-    document.getElementById("question" + questionIndex).style.display = "block";
-  } else {
-    showResult();
   }
 }
 
