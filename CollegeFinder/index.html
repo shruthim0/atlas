@@ -74,48 +74,6 @@ window.onload = wrap_img;
 
 
 <script>
-  function displayRankings() {
-     var uc_scores = [
-       { 'school': 'UC Berkeley', 'score': 90 },
-       { 'school': 'UC Los Angeles', 'score': 88 },
-       { 'school': 'UC San Diego', 'score': 92 },
-       { 'school': 'UC Santa Barbara', 'score': 85 },
-       { 'school': 'UC Irvine', 'score': 87 },
-       { 'school': 'UC Santa Cruz', 'score': 82 },
-       { 'school': 'UC Davis', 'score': 84 },
-       { 'school': 'UC Riverside', 'score': 79 },
-       { 'school': 'UC Merced', 'score': 75 }
-     ];
-
-
-     uc_scores.sort(function(a, b) {
-       return b.score - a.score;
-     });
-
-
-     var rankingsTable = '<h3>UC School Rankings</h3>' +
-                         '<table>' +
-                         '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
-
-
-     for (var i = 0; i < uc_scores.length; i++) {
-       var ranking = i + 1;
-       var school = uc_scores[i].school;
-       var score = uc_scores[i].score;
-
-
-       rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
-     }
-
-
-     rankingsTable += '</table>';
-
-
-     document.getElementById("rankings").innerHTML = rankingsTable;
-   }
-
-   // Call the displayRankings() function
-   displayRankings();
  var questionIndex = 1;
 
  function answer(response) {
@@ -400,6 +358,50 @@ function showResult() {
 
 <div id="result" style="display: none"></div>
 <div id="rankings"></div>
+<script>
+ function displayRankings() {
+     var uc_scores = [
+       { 'school': 'UC Berkeley', 'score': 90 },
+       { 'school': 'UC Los Angeles', 'score': 88 },
+       { 'school': 'UC San Diego', 'score': 92 },
+       { 'school': 'UC Santa Barbara', 'score': 85 },
+       { 'school': 'UC Irvine', 'score': 87 },
+       { 'school': 'UC Santa Cruz', 'score': 82 },
+       { 'school': 'UC Davis', 'score': 84 },
+       { 'school': 'UC Riverside', 'score': 79 },
+       { 'school': 'UC Merced', 'score': 75 }
+     ];
+
+
+     uc_scores.sort(function(a, b) {
+       return b.score - a.score;
+     });
+
+
+     var rankingsTable = '<h3>UC School Rankings</h3>' +
+                         '<table>' +
+                         '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
+
+
+     for (var i = 0; i < uc_scores.length; i++) {
+       var ranking = i + 1;
+       var school = uc_scores[i].school;
+       var score = uc_scores[i].score;
+
+
+       rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
+     }
+
+
+     rankingsTable += '</table>';
+
+
+     document.getElementById("rankings").innerHTML = rankingsTable;
+   }
+
+   // Call the displayRankings() function
+   displayRankings();
+</script>
 </body>
 </html>
       </div>
