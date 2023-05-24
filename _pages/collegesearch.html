@@ -6,29 +6,75 @@ title: College Search
 
 <head>
     <!-- load jQuery and DataTables syle and scripts -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>var define = null;</script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </head>
-<table id="flaskTable" class="table" style="width:100%">
-    <thead id="flaskHead">
-        <tr>
-            <th>id</th>
-            <th>College</th>
-            <th>City</th>
-            <th>Acceptance Rate</th>
-            <th>Location Type</th>
-            <th>Student to Faculty Ratio</th>
-            <th>Top 3 Majors</th>
-        </tr>
-    </thead>
-    <tbody id="flaskBody"></tbody>
-</table>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Define the search function
+            function search() {
+                var searchTerm = $('#searchInput').val();
 
+                // Make an AJAX request to your Flask route to fetch the search results
+                $.ajax({
+                    type: 'GET',
+                    url: '/search',
+                    data: { term: searchTerm },
+                    success: function(response) {
+                        // Replace the table body with the updated search results
+                        $('#tableBody').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+
+            // Bind the search function to the search button click event
+            $('#searchButton').click(search);
+
+            // Bind the search function to the Enter key press event in the search input
+            $('#searchInput').keypress(function(event) {
+                if (event.keyCode === 13) {
+                    search();
+                } 
+            });
+        });
+    </script>
+</head>
+<body>
+    <title>College Search</title>
+    <br>
+    <br>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button id="searchButton">Search</button>
+    <br>
+    <br>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>College</th>
+                <th>City</th>
+                <th>Acceptance Rate</th>
+                <th>Location Type</th>
+                <th>Student to Faculty Ratio</th>
+                <th>Top 3 Majors</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- The table body will be dynamically populated with search results -->
+        </tbody>
+    </table>
+</body>
+</table>
 <script>
   $(document).ready(function() {
-    fetch('http://172.27.138.205:8086/api/reviews/', { mode: 'cors' })
+    fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
     .then(response => {
       if (!response.ok) {
         throw new Error('API response failed');
@@ -51,7 +97,46 @@ title: College Search
       $("#flaskTable").DataTable();
     })
     .catch(error => {
-      console.error('Error!:', error);
+      console.error('Error:', error);
     });
   });
 </script>
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Define the search function
+            function search() {
+                var searchTerm = $('#searchInput').val();
+
+                // Make an AJAX request to your Flask route to fetch the search results
+                $.ajax({
+                    type: 'GET',
+                    url: '/search',
+                    data: { term: searchTerm },
+                    success: function(response) {
+                        // Replace the table body with the updated search results
+                        $('#tableBody').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+
+            // Bind the search function to the search button click event
+            $('#searchButton').click(search);
+
+            // Bind the search function to the Enter key press event in the search input
+            $('#searchInput').keypress(function(event) {
+                if (event.keyCode === 13) {
+                    search();
+                } 
+            });
+        });
+    </script>
+</head>
+</html>
+</head>
