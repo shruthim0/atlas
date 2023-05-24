@@ -4,9 +4,10 @@ permalink: /collegesearch
 title: College Search
 ---
 
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Search College For More Info</title>
+    <title>Search For More Info</title>
     <style>
         table {
             width: 100%;
@@ -33,12 +34,9 @@ title: College Search
     <table id="dataTable">
         <thead>
             <tr>
-                <th class="sortable" data-column="name">id</th>
-                <th class="sortable" data-column="age">College</th>
-                <th class="sortable" data-column="country">City</th>
-                <th class="sortable" data-column="name">Acceptance Rate</th>
-                <th class="sortable" data-column="age">Student to Faculty Ratio</th>
-                <th class="sortable" data-column="country">Top 3 Majors</th>
+                <th class="sortable" data-column="id">ID</th>
+                <th class="sortable" data-column="school">School</th>
+                <th class="sortable" data-column="review">Review</th>
             </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -47,7 +45,7 @@ title: College Search
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Retrieve data from the server-side (e.g., using AJAX or fetch API)
-            fetch('http://172.27.138.205:8086/api/reviews/')
+            fetch('http://127.0.0.1:8086/api/reviews/')
                 .then(response => response.json())
                 .then(data => {
                     populateTable(data);
@@ -61,23 +59,14 @@ title: College Search
                     const row = document.createElement('tr');
                     const idCell = document.createElement('td');
                     idCell.textContent = item.id;
-                    const collegeCell = document.createElement('td');
-                    collegeCell.textContent = item.college;
-                    const cityCell = document.createElement('td');
-                    cityCell.textContent = item.city;
-                    const rateCell = document.createElement('td');
-                    rateCell.textContent = item.rate;
-                    const stufacCell = document.createElement('td');
-                    stufacCell.textContent = item.stufac;
-                    const majorsCell = document.createElement('td');
-                    majorsCell.textContent = item.majors;
+                    const schoolCell = document.createElement('td');
+                    schoolCell.textContent = item.school;
+                    const reviewCell = document.createElement('td');
+                    reviewCell.textContent = item.review;
 
                     row.appendChild(idCell);
-                    row.appendChild(collegeCell);
-                    row.appendChild(cityCell);
-                    row.appendChild(rateCell);
-                    row.appendChild(stufacCell);
-                    row.appendChild(majorsCell);
+                    row.appendChild(schoolCell);
+                    row.appendChild(reviewCell);
                     tableBody.appendChild(row);
                 });
             }
@@ -95,18 +84,12 @@ title: College Search
 
                 for (let i = 0; i < rows.length; i++) {
                     const idCell = rows[i].getElementsByTagName('td')[0];
-                    const collegeCell = rows[i].getElementsByTagName('td')[1];
-                    const cityCell = rows[i].getElementsByTagName('td')[2];
-                    const rateCell = rows[i].getElementsByTagName('td')[3];
-                    const stufacCell = rows[i].getElementsByTagName('td')[4];
-                    const majorsCell = rows[i].getElementsByTagName('td')[5];
+                    const schoolCell = rows[i].getElementsByTagName('td')[1];
+                    const reviewCell = rows[i].getElementsByTagName('td')[2];
 
                     if (idCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
-                        collegeCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
-                        cityCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
-                        rateCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
-                        stufacCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
-                        majorsCell.textContent.toLowerCase().indexOf(filterValue) > -1) {
+                        schoolCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        reviewCell.textContent.toLowerCase().indexOf(filterValue) > -1) {
                         rows[i].style.display = '';
                     } else {
                         rows[i].style.display = 'none';
