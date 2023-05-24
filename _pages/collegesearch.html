@@ -4,139 +4,111 @@ permalink: /collegesearch
 title: College Search
 ---
 
-<head>
-    <!-- load jQuery and DataTables syle and scripts -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-</head>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Define the search function
-            function search() {
-                var searchTerm = $('#searchInput').val();
-
-                // Make an AJAX request to your Flask route to fetch the search results
-                $.ajax({
-                    type: 'GET',
-                    url: '/search',
-                    data: { term: searchTerm },
-                    success: function(response) {
-                        // Replace the table body with the updated search results
-                        $('#tableBody').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error:', error);
-                    }
-                });
-            }
-
-            // Bind the search function to the search button click event
-            $('#searchButton').click(search);
-
-            // Bind the search function to the Enter key press event in the search input
-            $('#searchInput').keypress(function(event) {
-                if (event.keyCode === 13) {
-                    search();
-                } 
-            });
-        });
-    </script>
-</head>
-<body>
-    <title>College Search</title>
-    <br>
-    <br>
-    <input type="text" id="searchInput" placeholder="Search...">
-    <button id="searchButton">Search</button>
-    <br>
-    <br>
-    <br>
-    <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>College</th>
-                <th>City</th>
-                <th>Acceptance Rate</th>
-                <th>Location Type</th>
-                <th>Student to Faculty Ratio</th>
-                <th>Top 3 Majors</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <!-- The table body will be dynamically populated with search results -->
-        </tbody>
-    </table>
-</body>
-</table>
-<script>
-  $(document).ready(function() {
-    fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('API response failed');
-      }
-      return response.json();
-    })
-    .then(data => {
-      for (const row of data) {
-        // BUG warning/resolution - DataTable requires row to be single append
-        $('#flaskBody').append('<tr><td>' + 
-            row.id + '</td><td>' + 
-            row.college + '</td><td>' + 
-            row.city + '</td><td>' + 
-            row.rate + '</td><td>' +
-            row.area + '</td><td>' + 
-            row.stufac + '</td><td>' +
-            row.major + '</td></tr>');
-      }
-      // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
-      $("#flaskTable").DataTable();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  });
-</script>
-
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Define the search function
-            function search() {
-                var searchTerm = $('#searchInput').val();
+    <title>Sortable and Filterable Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-                // Make an AJAX request to your Flask route to fetch the search results
-                $.ajax({
-                    type: 'GET',
-                    url: '/search',
-                    data: { term: searchTerm },
-                    success: function(response) {
-                        // Replace the table body with the updated search results
-                        $('#tableBody').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error:', error);
-                    }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th.sortable {
+            cursor: pointer;
+        }
+
+        input#filterInput {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="filterInput" placeholder="Filter">
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th class="sortable" data-column="name">Name</th>
+                <th class="sortable" data-column="age">Age</th>
+                <th class="sortable" data-column="country">Country</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve data from the server-side (e.g., using AJAX or fetch API)
+            fetch('your-database-url')
+                .then(response => response.json())
+                .then(data => {
+                    populateTable(data);
+                });
+
+            function populateTable(data) {
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = item.name;
+                    const ageCell = document.createElement('td');
+                    ageCell.textContent = item.age;
+                    const countryCell = document.createElement('td');
+                    countryCell.textContent = item.country;
+
+                    row.appendChild(nameCell);
+                    row.appendChild(ageCell);
+                    row.appendChild(countryCell);
+                    tableBody.appendChild(row);
                 });
             }
 
-            // Bind the search function to the search button click event
-            $('#searchButton').click(search);
+            function sortTable(column) {
+                // Implement sorting logic based on the selected column
+                // Retrieve the data, sort it, and update the table using populateTable()
+            }
 
-            // Bind the search function to the Enter key press event in the search input
-            $('#searchInput').keypress(function(event) {
-                if (event.keyCode === 13) {
-                    search();
-                } 
+            function filterTable() {
+                const filterInput = document.getElementById('filterInput');
+                const filterValue = filterInput.value.toLowerCase();
+                const tableBody = document.getElementById('tableBody');
+                const rows = tableBody.getElementsByTagName('tr');
+
+                for (let i = 0; i < rows.length; i++) {
+                    const nameCell = rows[i].getElementsByTagName('td')[0];
+                    const ageCell = rows[i].getElementsByTagName('td')[1];
+                    const countryCell = rows[i].getElementsByTagName('td')[2];
+
+                    if (nameCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        ageCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        countryCell.textContent.toLowerCase().indexOf(filterValue) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+
+            const sortableHeaders = document.getElementsByClassName('sortable');
+            for (let i = 0; i < sortableHeaders.length; i++) {
+                sortableHeaders[i].addEventListener('click', function() {
+                    const column = this.getAttribute('data-column');
+                    sortTable(column);
+                });
+            }
+
+            const filterInput = document.getElementById('filterInput');
+            filterInput.addEventListener('keyup', function() {
+                filterTable();
             });
         });
     </script>
-</head>
+</body>
 </html>
-</head>
