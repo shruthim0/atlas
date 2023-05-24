@@ -13,6 +13,9 @@ title: College Finder
  var questionIndex = 1;
 
  function answer(response) {
+  
+  document.getElementById("question" + questionIndex).style.display = "none";
+  questionIndex++;
   if (response === 'small') {
     // Find UC Berkeley in the uc_scores array
     var ucBerkeley = uc_scores.find(function (uc) {
@@ -34,9 +37,7 @@ title: College Finder
       ucLosAngeles.score += 1;
     }
   }
-  document.getElementById("question" + questionIndex).style.display = "none";
-  questionIndex++;
-
+  
   if (questionIndex <= 10) {
     document.getElementById("question" + questionIndex).style.display = "block";
   } else {
