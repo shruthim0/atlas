@@ -159,9 +159,9 @@ title: College Search
     <table>
         <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
+                <th>ID</th>
+                <th>School</th>
+                <th>Review</th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -170,3 +170,97 @@ title: College Search
     </table>
 </body>
 </html> 
+
+<script>
+    const distance_filter = document.getElementById("distance");
+    const zip_filter = document.getElementById("zip");
+    const brand_filter = document.getElementById("brand");
+    const location_filter = document.getElementById("location");
+    const btnfind = document.getElementById("find_button");
+
+
+    let all_dealerships;
+    getAllDealerships();
+
+
+    btnfind.addEventListener('click', (event) => {
+          console.log("Find Clicked!");
+          clearTable();
+         
+          var dealership_distance_value = distance_filter.value;
+          var dealership_zip_value = zip_filter.value;
+          var dealership_brand_value = brand_filter.value; //sets variable to the value of the filter that the user selects
+
+
+
+
+          var dealership_list = getDealershipResults(dealership_distance_value, dealership_zip_value, dealership_brand_value); //setting dealership_list to the result gotten in the function getDealershipResults
+
+
+          console.log("Filtered dealerships retrieved!");
+          console.log(dealership_list);
+          console.log("Creating table!");
+
+
+          for (const dealership of dealership_list) {
+            console.log(dealership);
+
+
+            const tr = document.createElement("tr");
+
+
+            const brand_ele = document.createElement("td");
+            brand_ele.innerHTML = dealership.brand;
+
+
+            const location_ele = document.createElement("td");
+            location_ele.innerHTML = dealership.location;
+
+
+            // this builds ALL td's (cells) into tr element
+            tr.appendChild(brand_ele);
+            tr.appendChild(location_ele);
+
+
+            resultContainer.appendChild(tr);
+          }
+    });
+
+    function clearTable() {
+        var tableRows = resultContainer.getElementsByTagName('tr');
+        var rowCount = tableRows.length;
+        for (var x=rowCount-1; x>=0; x--) {
+            resultContainer.removeChild(tableRows[x]);
+        }
+
+    }
+
+      function getDealerships() {
+        fetch('https://finalssvgcars.duckdns.org/api/dealerships/').then(function(response) {
+                return response.json();
+            }).then(function(data) {
+                console.log(data);
+                all_dealerships = data;
+            }).catch(function(err) {
+                console.log(err);
+            });
+    }
+
+      function getDealershipResults(brand, color, type, powersource, pricerange) {
+        var result = [];
+        for (const dealership of all_dealerships){
+              console.log(car);
+              console.log("price range from data is:" + typeof car["pricerange"] + car["pricerange"])
+              console.log("being compared to:" + typeof pricerange + pricerange)
+
+            if ((dealership["distance"] === distance || !distance) &&
+                (dealership)["zip"] === zip || !zip) &&
+                (dealership["brand"] === type || !type) {
+                result.push(dealership);
+            }
+
+        }
+        return result;
+      }
+</script>
+
