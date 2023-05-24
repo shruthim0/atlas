@@ -77,6 +77,27 @@ window.onload = wrap_img;
  var questionIndex = 1;
 
  function answer(response) {
+  if (response === 'small') {
+    // Find UC Berkeley in the uc_scores array
+    var ucBerkeley = uc_scores.find(function (uc) {
+      return uc.school === 'UC Berkeley';
+    });
+
+    // Find UC Los Angeles in the uc_scores array
+    var ucLosAngeles = uc_scores.find(function (uc) {
+      return uc.school === 'UC Los Angeles';
+    });
+
+    if (ucBerkeley) {
+      // Increase the score of UC Berkeley by 1
+      ucBerkeley.score += 1;
+    }
+
+    if (ucLosAngeles) {
+      // Increase the score of UC Los Angeles by 1
+      ucLosAngeles.score += 1;
+    }
+  }
   document.getElementById("question" + questionIndex).style.display = "none";
   questionIndex++;
 
