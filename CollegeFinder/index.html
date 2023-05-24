@@ -88,31 +88,6 @@ window.onload = wrap_img;
   }
 }
 
-function incrementScores(response) {
-  if (response === 'small') {
-    // Find UC Berkeley in the uc_scores array
-    var ucBerkeley = uc_scores.find(function (uc) {
-      return uc.name === 'UC Berkeley';
-    });
-
-    // Find UC Los Angeles in the uc_scores array
-    var ucLosAngeles = uc_scores.find(function (uc) {
-      return uc.name === 'UC Los Angeles';
-    });
-
-    if (ucBerkeley) {
-      // Increase the score of UC Berkeley by 1
-      ucBerkeley.score += 1;
-    }
-
-    if (ucLosAngeles) {
-      // Increase the score of UC Los Angeles by 1
-      ucLosAngeles.score += 1;
-    }
-  }
-}
-
-console.log(uc_scores);
 
 function showResult() {
   // Sort the UC scores based on the score value
@@ -141,7 +116,7 @@ function showResult() {
  <h2>College Finder</h2>
  <div id="question1">
    <p>How big do you want your school to be?</p>
-   <button onclick="incrementScores('small')" onclick="answer('small')">Small (less than 5,000 students)</button>
+   <button onclick="answer('small')">Small (less than 5,000 students)</button>
    <button onclick="answer('medium')">Medium (5,000-15,000 students)</button>
    <button onclick="answer('large')">Large (more than 15,000 students)</button>
  </div>
