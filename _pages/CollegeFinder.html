@@ -139,7 +139,6 @@ function showResult() {
    <button onclick="answer('midmoney')">I am willing to pay quite a bit (30,000-50,000)</button>
    <button onclick="answer('lowmoney')">Cheapest possible (Less than $30,000)</button>
  </div>
- <div id="result" style="display: none"></div>
 </div>
 
 
@@ -185,68 +184,6 @@ function showResult() {
 
      document.getElementById("rankings").innerHTML = rankingsTable;
    }
-
-   function answer(response) {
-    if (questionIndex === 2) {
-      if (response === 'small') {
-        uc_scores[1].score += 1; // UC Los Angeles
-        uc_scores[2].score += 1; // UC San Diego
-        uc_scores[5].score -= 1; // UC Santa Cruz
-        uc_scores[7].score -= 1; // UC Riverside
-        uc_scores[8].score -= 1; // UC Merced
-      } else if (response === 'medium') {
-        uc_scores[2].score += 1; // UC San Diego
-        uc_scores[4].score += 1; // UC Irvine
-        uc_scores[6].score += 1; // UC Davis
-      } else if (response === 'large') {
-        uc_scores[1].score += 1; // UC Los Angeles
-        uc_scores[3].score += 1; // UC Santa Barbara
-      }
-    } else if (questionIndex === 3) {
-      if (response === 'urban') {
-        uc_scores[0].score += 1; // UC Berkeley
-        uc_scores[1].score += 1; // UC Los Angeles
-        uc_scores[2].score += 1; // UC San Diego
-        uc_scores[4].score += 1; // UC Irvine
-      } else if (response === 'suburban') {
-        uc_scores[3].score += 1; // UC Santa Barbara
-        uc_scores[6].score += 1; // UC Davis
-        uc_scores[8].score += 1; // UC Merced
-      } else if (response === 'rural') {
-        uc_scores[5].score -= 1; // UC Santa Cruz
-        uc_scores[7].score -= 1; // UC Riverside
-      }
-    }
-
-    // Add conditions for other question indices as needed
-
-    if (questionIndex <= 3) {
-      document.getElementById("question" + questionIndex).style.display = "block";
-    } else {
-      showResult();
-    }
-   }
-   function showResult() {
-    // Sort the UC scores based on the score value
-    uc_scores.sort((a, b) => b.score - a.score);
-
-    // Display the UC scores in the table
-    var table = document.getElementById("resultTable");
-    var tbody = table.getElementsByTagName("tbody")[0];
-    tbody.innerHTML = "";
-
-    for (var i = 0; i < uc_scores.length; i++) {
-        var row = tbody.insertRow(i);
-        var rankCell = row.insertCell(0);
-        var nameCell = row.insertCell(1);
-        var scoreCell = row.insertCell(2);
-
-        rankCell.innerHTML = i + 1;
-        nameCell.innerHTML = uc_scores[i].name;
-        scoreCell.innerHTML = uc_scores[i].score;
-    }
-}
-   // Call the displayRankings() function
    displayRankings();
 </script>
 </body>
