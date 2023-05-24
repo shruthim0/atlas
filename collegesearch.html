@@ -68,104 +68,11 @@ window.onload = wrap_img;
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <head>
-    <title>College Search</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        thead th {
-            background-color: #f2f2f2;
-        }
-        
-        tbody tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        #searchInput, #searchButton {
-            padding: 6px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        #searchButton {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        
-        #searchButton:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<head>
     <!-- load jQuery and DataTables syle and scripts -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>var define = null;</script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </head>
-<table id="tableTable" class="table" style="width:100%">
-    <thead id="tableHead">
-        <tr>
-            <th>id</th>
-            <th>College</th>
-            <th>City</th>
-            <th>Acceptance Rate</th>
-            <th>Location Type</th>
-            <th>Student to Faculty Ratio</th>
-            <th>Top 3 Majors</th>
-        </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-</table>
-<script>
-    $(document).ready(function() {
-      fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('API response failed');
-        }
-        return response.json();
-      })
-      .then(data => {
-        for (const row of data) {
-          // BUG warning/resolution - DataTable requires row to be single append
-          $('#flaskBody').append('<tr><td>' + 
-              row.id + '</td><td>' + 
-              row.college + '</td><td>' + 
-              row.city + '</td><td>' + 
-              row.rate + '</td><td>' +
-              row.area + '</td><td>' + 
-              row.stufac + '</td><td>' +
-              row.major + '</td></tr>');
-        }
-        // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
-        $("#flaskTable").DataTable();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-    });
-  </script>
-
-<!-- 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -342,7 +249,7 @@ window.onload = wrap_img;
     </script>
 </head>
 </html>
-</head> -->
+</head>
 
       </div>
     </main><footer class="site-footer h-card">
