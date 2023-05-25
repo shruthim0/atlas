@@ -62,7 +62,7 @@
   
       ,"page4": {
           "title": "UCFacts",
-          "content": ". Number School Fun Fact .",
+          "content": "Search Functionality . Search ID School Fun Facts . The table body will be dynamically populated with search results .",
           "url": "https://shruthim0.github.io/atlas/facts/",
           "relUrl": "/facts/",
           "date": ""
