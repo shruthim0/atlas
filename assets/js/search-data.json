@@ -60,6 +60,17 @@
   
 
   
+      ,"page4": {
+          "title": "UCFacts",
+          "content": ". Number School Fun Fact .",
+          "url": "https://shruthim0.github.io/atlas/facts/",
+          "relUrl": "/facts/",
+          "date": ""
+      }
+      
+  
+
+  
 
   
   
@@ -68,7 +79,7 @@
   
 
   
-      ,"page7": {
+      ,"page8": {
           "title": "Test",
           "content": ". Number School Review .",
           "url": "https://shruthim0.github.io/atlas/test",
@@ -91,7 +102,7 @@
   
 
   
-      ,"page12": {
+      ,"page13": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",
