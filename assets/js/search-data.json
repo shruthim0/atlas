@@ -68,6 +68,14 @@
   
 
   
+      ,"page7": {
+          "title": "Test",
+          "content": ". Number School Review .",
+          "url": "https://shruthim0.github.io/atlas/test",
+          "relUrl": "/test",
+          "date": ""
+      }
+      
   
 
   
@@ -80,7 +88,10 @@
   
 
   
-      ,"page11": {
+  
+
+  
+      ,"page12": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",
