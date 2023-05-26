@@ -70,6 +70,7 @@ window.onload = wrap_img;
         <html>
 <body>
 <div data-aos="fade-middle">
+  <div id="notification"></div>
 </div>
 
 <script>
@@ -109,6 +110,10 @@ function answer(response) {
     // Update the score display on the website
     document.getElementById("score-ucsb").textContent = ucSantaBarbara.score;
     document.getElementById("score-ucsd").textContent = ucSanDiego.score;
+
+    // Display a notification
+    var notificationText = "Scores updated!";
+    document.getElementById("notification").textContent = notificationText;
   }
 }
 </script>
