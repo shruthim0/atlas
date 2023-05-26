@@ -58,9 +58,12 @@ title: UCFacts
 </body>
 </html> 
 
-<script>
-  const id_filter = document.getElementById("ID");
-    const school_filter = document.getElementById("school");
-    const facts_filter = document.getElementById("Fun Fact");
-    const btnfind = document.getElementById("find_button");
+<--!<script>
+    document.addEventListener('DOMContentLoaded', function() 
+    // Retrieve data from the server-side (e.g., using AJAX or fetch API)
+        fetch('')
+            .then(response => response.json())
+            .then(data => {
+                populateTable(data);
+            });
 </script>
