@@ -73,19 +73,31 @@ window.onload = wrap_img;
 </div>
 
 <script>
+var uc_scores = [
+  { 'school': 'UC Berkeley', 'score': 90 },
+  { 'school': 'UC Los Angeles', 'score': 88 },
+  { 'school': 'UC San Diego', 'score': 92 },
+  { 'school': 'UC Santa Barbara', 'score': 85 },
+  { 'school': 'UC Irvine', 'score': 87 },
+  { 'school': 'UC Santa Cruz', 'score': 82 },
+  { 'school': 'UC Davis', 'score': 84 },
+  { 'school': 'UC Riverside', 'score': 79 },
+  { 'school': 'UC Merced', 'score': 75 }
+];
+
 var questionIndex = 1;
 
 function answer(response) {
   document.getElementById("question" + questionIndex).style.display = "none";
- questionIndex++;
+  questionIndex++;
 
+  if (questionIndex <= 10) {
+    document.getElementById("question" + questionIndex).style.display = "block";
+  } else {
+    showResult();
+  }
 
- if (questionIndex <= 10) {
-   document.getElementById("question" + questionIndex).style.display = "block";
- } else {
-   showResult();
- }
- if (response === 'small') {
+  if (response === 'small') {
     // Find UC Santa Barbara and UC San Diego in the uc_scores array
     var ucSantaBarbara = uc_scores.find(item => item.school === 'UC Santa Barbara');
     var ucSanDiego = uc_scores.find(item => item.school === 'UC San Diego');
@@ -99,7 +111,6 @@ function answer(response) {
     document.getElementById("score-ucsd").textContent = ucSanDiego.score;
   }
 }
-
 </script>
 
 
@@ -203,18 +214,6 @@ function answer(response) {
 <div id="rankings"></div>
 <script>
 function displayRankings() {
-    var uc_scores = [
-      { 'school': 'UC Berkeley', 'score': 90 },
-      { 'school': 'UC Los Angeles', 'score': 88 },
-      { 'school': 'UC San Diego', 'score': 92 },
-      { 'school': 'UC Santa Barbara', 'score': 85 },
-      { 'school': 'UC Irvine', 'score': 87 },
-      { 'school': 'UC Santa Cruz', 'score': 82 },
-      { 'school': 'UC Davis', 'score': 84 },
-      { 'school': 'UC Riverside', 'score': 79 },
-      { 'school': 'UC Merced', 'score': 75 }
-    ];
-
     uc_scores.sort(function(a, b) {
       return b.score - a.score;
     });
