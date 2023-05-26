@@ -7,25 +7,49 @@ title: College Search
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search For More Info</title>
+    <title>College Search</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    
         table {
             width: 100%;
             border-collapse: collapse;
         }
-
+    
         th, td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-
-        th.sortable {
+    
+        thead th {
+            background-color: #f2f2f2;
+        }
+    
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    
+        #searchInput, #searchButton {
+            padding: 6px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    
+        #searchButton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
             cursor: pointer;
         }
-
-        input#filterInput {
-            margin-bottom: 10px;
+    
+        #searchButton:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -171,3 +195,130 @@ title: College Search
     </table>
 </body>
 </html> 
+
+<html>
+<head>
+    <title>Search College For More Info</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th.sortable {
+            cursor: pointer;
+        }
+
+        input#filterInput {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="filterInput" placeholder="Filter">
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th class="sortable" data-column="name">id</th>
+                <th class="sortable" data-column="age">College</th>
+                <th class="sortable" data-column="country">City</th>
+                <th class="sortable" data-column="name">Acceptance Rate</th>
+                <th class="sortable" data-column="age">Student to Faculty Ratio</th>
+                <th class="sortable" data-column="country">Top 3 Majors</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve data from the server-side (e.g., using AJAX or fetch API)
+            fetch('http://172.27.138.205:8086/api/reviews/')
+                .then(response => response.json())
+                .then(data => {
+                    populateTable(data);
+                });
+
+            function populateTable(data) {
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    const idCell = document.createElement('td');
+                    idCell.textContent = item.id;
+                    const collegeCell = document.createElement('td');
+                    collegeCell.textContent = item.college;
+                    const cityCell = document.createElement('td');
+                    cityCell.textContent = item.city;
+                    const rateCell = document.createElement('td');
+                    rateCell.textContent = item.rate;
+                    const stufacCell = document.createElement('td');
+                    stufacCell.textContent = item.stufac;
+                    const majorsCell = document.createElement('td');
+                    majorsCell.textContent = item.majors;
+
+                    row.appendChild(idCell);
+                    row.appendChild(collegeCell);
+                    row.appendChild(cityCell);
+                    row.appendChild(rateCell);
+                    row.appendChild(stufacCell);
+                    row.appendChild(majorsCell);
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function sortTable(column) {
+                // Implement sorting logic based on the selected column
+                // Retrieve the data, sort it, and update the table using populateTable()
+            }
+
+            function filterTable() {
+                const filterInput = document.getElementById('filterInput');
+                const filterValue = filterInput.value.toLowerCase();
+                const tableBody = document.getElementById('tableBody');
+                const rows = tableBody.getElementsByTagName('tr');
+
+                for (let i = 0; i < rows.length; i++) {
+                    const idCell = rows[i].getElementsByTagName('td')[0];
+                    const collegeCell = rows[i].getElementsByTagName('td')[1];
+                    const cityCell = rows[i].getElementsByTagName('td')[2];
+                    const rateCell = rows[i].getElementsByTagName('td')[3];
+                    const stufacCell = rows[i].getElementsByTagName('td')[4];
+                    const majorsCell = rows[i].getElementsByTagName('td')[5];
+
+                    if (idCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        collegeCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        cityCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        rateCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        stufacCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        majorsCell.textContent.toLowerCase().indexOf(filterValue) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+
+            const sortableHeaders = document.getElementsByClassName('sortable');
+            for (let i = 0; i < sortableHeaders.length; i++) {
+                sortableHeaders[i].addEventListener('click', function() {
+                    const column = this.getAttribute('data-column');
+                    sortTable(column);
+                });
+            }
+
+            const filterInput = document.getElementById('filterInput');
+            filterInput.addEventListener('keyup', function() {
+                filterTable();
+            });
+        });
+    </script>
+</body>
+</html>
