@@ -11,6 +11,7 @@ title: College Finder
 <script>
 var questionIndex = 1;
 
+
 function answer(response) {
   document.getElementById("question" + questionIndex).style.display = "none";
  questionIndex++;
@@ -32,9 +33,7 @@ function answer(response) {
    ucLosAngeles.score += 3;
  }
 }
-
 </script>
-
 
 <div data-aos="fade-middle">
 <h2>College Finder</h2>
@@ -132,8 +131,6 @@ function answer(response) {
 </div>
 
 
-
-
 <div id="result" style="display: none"></div>
 <div id="rankings"></div>
 <script>
@@ -150,9 +147,11 @@ function displayRankings() {
       { 'school': 'UC Merced', 'score': 75 }
     ];
 
+
     uc_scores.sort(function(a, b) {
       return b.score - a.score;
     });
+
 
     var rankingsTable = '<h3>UC School Rankings</h3>' +
                         '<table>' +
@@ -163,12 +162,10 @@ function displayRankings() {
       var school = uc_scores[i].school;
       var score = uc_scores[i].score;
 
-
       rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
     }
 
     rankingsTable += '</table>';
-
 
     document.getElementById("rankings").innerHTML = rankingsTable;
   }
@@ -176,3 +173,5 @@ function displayRankings() {
 </script>
 </body>
 </html>
+
+
