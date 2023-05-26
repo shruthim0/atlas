@@ -8,35 +8,73 @@ title: College Finder
  <div data-aos="fade-middle">
  </div>
 
-
 <script>
  var questionIndex = 1;
 
+ var uc_scores = [
+   { 'school': 'UC Berkeley', 'score': 90 },
+   { 'school': 'UC Los Angeles', 'score': 88 },
+   { 'school': 'UC San Diego', 'score': 92 },
+   { 'school': 'UC Santa Barbara', 'score': 85 },
+   { 'school': 'UC Irvine', 'score': 87 },
+   { 'school': 'UC Santa Cruz', 'score': 82 },
+   { 'school': 'UC Davis', 'score': 84 },
+   { 'school': 'UC Riverside', 'score': 79 },
+   { 'school': 'UC Merced', 'score': 75 }
+ ];
+
  function answer(response) {
-  
-  document.getElementById("question" + questionIndex).style.display = "none";
-  questionIndex++;
+   document.getElementById("question" + questionIndex).style.display = "none";
+   questionIndex++;
 
-  if (questionIndex <= 10) {
-    document.getElementById("question" + questionIndex).style.display = "block";
-  } else {
-    showResult();
-  }
-  
-  if (response === 'small') {
-    // Find UC Berkeley and UC Los Angeles in the uc_scores array
-    var ucBerkeley = uc_scores.find(item => item.school === 'UC Berkeley');
-    var ucLosAngeles = uc_scores.find(item => item.school === 'UC Los Angeles');
+   if (questionIndex <= 10) {
+     document.getElementById("question" + questionIndex).style.display = "block";
+   } else {
+     showResult();
+   }
 
-    // Increase the scores of UC Berkeley and UC Los Angeles
-    ucBerkeley.score += 5;
-    ucLosAngeles.score += 3;
-  }
-}
+   if (response === 'small') {
+     // Find UC Berkeley and UC Los Angeles in the uc_scores array
+     var ucBerkeley = uc_scores.find(item => item.school === 'UC Berkeley');
+     var ucLosAngeles = uc_scores.find(item => item.school === 'UC Los Angeles');
 
+     // Increase the scores of UC Berkeley and UC Los Angeles
+     ucBerkeley.score += 5;
+     ucLosAngeles.score += 3;
 
+     // Update the rankings after modifying the scores
+     displayRankings();
+   }
+ }
+
+ function displayRankings() {
+   uc_scores.sort(function(a, b) {
+     return b.score - a.score;
+   });
+
+   var rankingsTable = '<h3>UC School Rankings</h3>' +
+                       '<table>' +
+                       '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
+
+   for (var i = 0; i < uc_scores.length; i++) {
+     var ranking = i + 1;
+     var school = uc_scores[i].school;
+     var score = uc_scores[i].score;
+
+     rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
+   }
+
+   rankingsTable += '</table>';
+
+   document.getElementById("rankings").innerHTML = rankingsTable;
+ }
+
+ function showResult() {
+   // Code to display the final result goes here
+ }
+
+ displayRankings();
 </script>
-
 
 <div data-aos="fade-middle">
  <h2>College Finder</h2>
