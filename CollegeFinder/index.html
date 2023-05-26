@@ -85,16 +85,19 @@ function answer(response) {
  } else {
    showResult();
  }
-  if (response === 'small') {
-   // Find UC Berkeley and UC Los Angeles in the uc_scores array
-   var ucBerkeley = uc_scores.find(item => item.school === 'UC Berkeley');
-   var ucLosAngeles = uc_scores.find(item => item.school === 'UC Los Angeles');
+ if (response === 'small') {
+    // Find UC Santa Barbara and UC San Diego in the uc_scores array
+    var ucSantaBarbara = uc_scores.find(item => item.school === 'UC Santa Barbara');
+    var ucSanDiego = uc_scores.find(item => item.school === 'UC San Diego');
 
+    // Increase the scores of UC Santa Barbara and UC San Diego
+    ucSantaBarbara.score++;
+    ucSanDiego.score++;
 
-   // Increase the scores of UC Berkeley and UC Los Angeles
-   ucBerkeley.score += 5;
-   ucLosAngeles.score += 3;
- }
+    // Update the score display on the website
+    document.getElementById("score-ucsb").textContent = ucSantaBarbara.score;
+    document.getElementById("score-ucsd").textContent = ucSanDiego.score;
+  }
 }
 
 </script>
@@ -194,8 +197,6 @@ function answer(response) {
   <button onclick="answer('lowmoney')">Cheapest possible (Less than $30,000)</button>
 </div>
 </div>
-
-
 
 
 <div id="result" style="display: none"></div>
