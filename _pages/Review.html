@@ -4,6 +4,7 @@ permalink: /Review/
 title: UCReview
 ---
 
+%%html
 <head>
     <!-- load jQuery and DataTables syle and scripts -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
@@ -14,9 +15,10 @@ title: UCReview
 <table id="flaskTable" class="table" style="width:100%">
     <thead id="flaskHead">
         <tr>
-            <th>Number</th>
-            <th>School</th>
-            <th>Review</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Age</th>
         </tr>
     </thead>
     <tbody id="flaskBody"></tbody>
@@ -24,7 +26,7 @@ title: UCReview
 
 <script>
   $(document).ready(function() {
-    fetch('http://172.27.138.205:8086/api/reviews/', { mode: 'cors' })
+    fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
     .then(response => {
       if (!response.ok) {
         throw new Error('API response failed');
@@ -35,15 +37,16 @@ title: UCReview
       for (const row of data) {
         // BUG warning/resolution - DataTable requires row to be single append
         $('#flaskBody').append('<tr><td>' + 
-            row.id + '</td><td>' +
-            row.school + '</td><td>' + 
-            row.review + '</td><td>' );
+            row.id + '</td><td>' + 
+            row.name + '</td><td>' + 
+            row.dob + '</td><td>' + 
+            row.age + '</td></tr>');
       }
       // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
       $("#flaskTable").DataTable();
     })
     .catch(error => {
-      console.error('Error!:', error);
+      console.error('Error:', error);
     });
   });
 </script>
