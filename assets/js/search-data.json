@@ -40,7 +40,7 @@
   
       ,"page2": {
           "title": "UCReview",
-          "content": ". Number School Review .",
+          "content": "%%html . . ID Name DOB Age .",
           "url": "https://shruthim0.github.io/atlas/Review/",
           "relUrl": "/Review/",
           "date": ""
