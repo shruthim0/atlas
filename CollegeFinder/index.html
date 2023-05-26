@@ -70,54 +70,34 @@ window.onload = wrap_img;
         <html>
 <body>
 <div data-aos="fade-middle">
-  <div id="notification"></div>
 </div>
 
 <script>
-var uc_scores = [
-  { 'school': 'UC Berkeley', 'score': 90 },
-  { 'school': 'UC Los Angeles', 'score': 88 },
-  { 'school': 'UC San Diego', 'score': 92 },
-  { 'school': 'UC Santa Barbara', 'score': 85 },
-  { 'school': 'UC Irvine', 'score': 87 },
-  { 'school': 'UC Santa Cruz', 'score': 82 },
-  { 'school': 'UC Davis', 'score': 84 },
-  { 'school': 'UC Riverside', 'score': 79 },
-  { 'school': 'UC Merced', 'score': 75 }
-];
-
 var questionIndex = 1;
+
 
 function answer(response) {
   document.getElementById("question" + questionIndex).style.display = "none";
-  questionIndex++;
+ questionIndex++;
 
-  if (questionIndex <= 10) {
-    document.getElementById("question" + questionIndex).style.display = "block";
-  } else {
-    showResult();
-  }
 
+ if (questionIndex <= 10) {
+   document.getElementById("question" + questionIndex).style.display = "block";
+ } else {
+   showResult();
+ }
   if (response === 'small') {
-    // Find UC Santa Barbara and UC San Diego in the uc_scores array
-    var ucSantaBarbara = uc_scores.find(item => item.school === 'UC Santa Barbara');
-    var ucSanDiego = uc_scores.find(item => item.school === 'UC San Diego');
+   // Find UC Berkeley and UC Los Angeles in the uc_scores array
+   var ucBerkeley = uc_scores.find(item => item.school === 'UC Berkeley');
+   var ucLosAngeles = uc_scores.find(item => item.school === 'UC Los Angeles');
 
-    // Increase the scores of UC Santa Barbara and UC San Diego
-    ucSantaBarbara.score++;
-    ucSanDiego.score++;
 
-    // Update the score display on the website
-    document.getElementById("score-ucsb").textContent = ucSantaBarbara.score;
-    document.getElementById("score-ucsd").textContent = ucSanDiego.score;
-
-    // Display a notification
-    var notificationText = "Scores updated!";
-    document.getElementById("notification").textContent = notificationText;
-  }
+   // Increase the scores of UC Berkeley and UC Los Angeles
+   ucBerkeley.score += 5;
+   ucLosAngeles.score += 3;
+ }
 }
 </script>
-
 
 <div data-aos="fade-middle">
 <h2>College Finder</h2>
@@ -219,9 +199,23 @@ function answer(response) {
 <div id="rankings"></div>
 <script>
 function displayRankings() {
+    var uc_scores = [
+      { 'school': 'UC Berkeley', 'score': 90 },
+      { 'school': 'UC Los Angeles', 'score': 88 },
+      { 'school': 'UC San Diego', 'score': 92 },
+      { 'school': 'UC Santa Barbara', 'score': 85 },
+      { 'school': 'UC Irvine', 'score': 87 },
+      { 'school': 'UC Santa Cruz', 'score': 82 },
+      { 'school': 'UC Davis', 'score': 84 },
+      { 'school': 'UC Riverside', 'score': 79 },
+      { 'school': 'UC Merced', 'score': 75 }
+    ];
+
+
     uc_scores.sort(function(a, b) {
       return b.score - a.score;
     });
+
 
     var rankingsTable = '<h3>UC School Rankings</h3>' +
                         '<table>' +
@@ -232,12 +226,10 @@ function displayRankings() {
       var school = uc_scores[i].school;
       var score = uc_scores[i].score;
 
-
       rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
     }
 
     rankingsTable += '</table>';
-
 
     document.getElementById("rankings").innerHTML = rankingsTable;
   }
@@ -245,6 +237,8 @@ function displayRankings() {
 </script>
 </body>
 </html>
+
+
 
       </div>
     </main><footer class="site-footer h-card">
