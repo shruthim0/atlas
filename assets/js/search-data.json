@@ -51,7 +51,7 @@
   
       ,"page3": {
           "title": "College Search",
-          "content": "&lt;!DOCTYPE html&gt; . College Search . School Acceptance Rate Student to Faculty Ratio . . &lt;!—&lt;html&gt; . Search Functionality . Search ID School City Acceptance Rate . The table body will be dynamically populated with search results &lt;/html&gt; . Search College For More Info . id College City Acceptance Rate Student to Faculty Ratio Top 3 Majors . .",
+          "content": "%%html . . ID Name DOB Age . &lt;!DOCTYPE html&gt; . College Search . School Acceptance Rate Student to Faculty Ratio . . &lt;!—&lt;html&gt; . Search Functionality . Search ID School City Acceptance Rate . The table body will be dynamically populated with search results &lt;/html&gt; . Search College For More Info . id College City Acceptance Rate Student to Faculty Ratio Top 3 Majors . .",
           "url": "https://shruthim0.github.io/atlas/collegesearch",
           "relUrl": "/collegesearch",
           "date": ""
