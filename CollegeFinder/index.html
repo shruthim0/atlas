@@ -86,8 +86,7 @@ window.onload = wrap_img;
   } else {
     showResult();
   }
-  function answer(response) {
-  // Update the scores based on the response
+  
   if (response === 'small') {
     // Find UC Berkeley and UC Los Angeles in the uc_scores array
     var ucBerkeley = uc_scores.find(item => item.school === 'UC Berkeley');
@@ -98,7 +97,7 @@ window.onload = wrap_img;
     ucLosAngeles.score += 3;
   }
 }
-}
+
 
 </script>
 
