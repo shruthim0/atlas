@@ -4,8 +4,6 @@ permalink: /collegesearch
 title: College Search
 ---
 
-
-%%html
 <html>
 <head>
     <title>College Search</title>
@@ -59,6 +57,7 @@ title: College Search
     <table id="dataTable">
         <thead>
             <tr>
+                <th class="sortable" data-column="id">ID</th>
                 <th class="sortable" data-column="school">School</th>
                 <th class="sortable" data-column="rate">Acceptance Rate</th>
                 <th class="sortable" data-column="stufac">Student to Faculty Ratio</th>
@@ -86,14 +85,17 @@ title: College Search
                     idCell.textContent = item.id;
                     const schoolCell = document.createElement('td');
                     schoolCell.textContent = item.school;
-                    const reviewCell = document.createElement('td');
-                    reviewCell.textContent = item.review;
+                    const rateCell = document.createElement('td');
+                    rateCell.textContent = item.rate;
+                    const stufacCell = document.createElement('td');
+                    stufacCell.textContent = item.stufac;
 
+                    row.appendChild(idCell);
                     row.appendChild(schoolCell);
                     row.appendChild(rateCell);
                     row.appendChild(stufacCell);
                     tableBody.appendChild(row);
-                });
+                })
             }
 
             function sortTable(column) {
@@ -108,6 +110,7 @@ title: College Search
                 const rows = tableBody.getElementsByTagName('tr');
 
                 for (let i = 0; i < rows.length; i++) {
+                    const idCell = rows[i].getElementsByTagName('td')[0];
                     const schoolCell = rows[i].getElementsByTagName('td')[0];
                     const rateCell = rows[i].getElementsByTagName('td')[1];
                     const stufacCell = rows[i].getElementsByTagName('td')[2];
