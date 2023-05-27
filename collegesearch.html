@@ -67,8 +67,7 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        %%html
-<html>
+        <html>
 <head>
     <title>College Search</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
@@ -121,6 +120,7 @@ window.onload = wrap_img;
     <table id="dataTable">
         <thead>
             <tr>
+                <th class="sortable" data-column="id">ID</th>
                 <th class="sortable" data-column="school">School</th>
                 <th class="sortable" data-column="rate">Acceptance Rate</th>
                 <th class="sortable" data-column="stufac">Student to Faculty Ratio</th>
@@ -148,14 +148,17 @@ window.onload = wrap_img;
                     idCell.textContent = item.id;
                     const schoolCell = document.createElement('td');
                     schoolCell.textContent = item.school;
-                    const reviewCell = document.createElement('td');
-                    reviewCell.textContent = item.review;
+                    const rateCell = document.createElement('td');
+                    rateCell.textContent = item.rate;
+                    const stufacCell = document.createElement('td');
+                    stufacCell.textContent = item.stufac;
 
+                    row.appendChild(idCell);
                     row.appendChild(schoolCell);
                     row.appendChild(rateCell);
                     row.appendChild(stufacCell);
                     tableBody.appendChild(row);
-                });
+                })
             }
 
             function sortTable(column) {
@@ -170,6 +173,7 @@ window.onload = wrap_img;
                 const rows = tableBody.getElementsByTagName('tr');
 
                 for (let i = 0; i < rows.length; i++) {
+                    const idCell = rows[i].getElementsByTagName('td')[0];
                     const schoolCell = rows[i].getElementsByTagName('td')[0];
                     const rateCell = rows[i].getElementsByTagName('td')[1];
                     const stufacCell = rows[i].getElementsByTagName('td')[2];
