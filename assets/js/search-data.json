@@ -40,7 +40,7 @@
   
       ,"page2": {
           "title": "UCReview",
-          "content": "%%html . . ID Name DOB Age .",
+          "content": "%%html . layout: base permalink: /Review/ title: UCReview — . UCReviews . Add Review . Add a review for a UC! . &lt;/label&gt;&lt;/p&gt; School: &lt;/label&gt;&lt;/p&gt; Review: ❊ Add ❊ . &lt;/form&gt; - . UCReviews . Number School Review . &lt;/html&gt; .",
           "url": "https://shruthim0.github.io/atlas/Review/",
           "relUrl": "/Review/",
           "date": ""
@@ -61,6 +61,17 @@
 
   
       ,"page4": {
+          "title": "CRUDREVIEW",
+          "content": "School: &lt;/label&gt;&lt;/p&gt; Review: ❊ Add ❊ . &lt;/form&gt; Number School Review . &lt;/div&gt; Delete Records .",
+          "url": "https://shruthim0.github.io/atlas/crudreview/",
+          "relUrl": "/crudreview/",
+          "date": ""
+      }
+      
+  
+
+  
+      ,"page5": {
           "title": "UCFacts",
           "content": "Search Functionality . Search ID School Fun Facts . .",
           "url": "https://shruthim0.github.io/atlas/facts/",
@@ -79,7 +90,7 @@
   
 
   
-      ,"page8": {
+      ,"page9": {
           "title": "Test",
           "content": "Search College For More Info . id College City Acceptance Rate Student to Faculty Ratio Top 3 Majors . .",
           "url": "https://shruthim0.github.io/atlas/test",
@@ -102,7 +113,7 @@
   
 
   
-      ,"page13": {
+      ,"page14": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",

@@ -62,57 +62,111 @@ window.onload = wrap_img;
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/atlas/CollegeFinder/">College Finder</a><a class="page-link" href="/atlas/Review/">UCReview</a><a class="page-link" href="/atlas/collegesearch">College Search</a><a class="page-link" href="/atlas/facts/">UCFacts</a><a class="page-link" href="/atlas/test">Test</a></div>
+        <div class="trigger"><a class="page-link" href="/atlas/CollegeFinder/">College Finder</a><a class="page-link" href="/atlas/Review/">UCReview</a><a class="page-link" href="/atlas/collegesearch">College Search</a><a class="page-link" href="/atlas/crudreview/">CRUDREVIEW</a><a class="page-link" href="/atlas/facts/">UCFacts</a><a class="page-link" href="/atlas/test">Test</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         %%html
+---
+layout: base
+permalink: /Review/
+title: UCReview
+---
+<html>
 <head>
-    <!-- load jQuery and DataTables syle and scripts -->
+    <title>UCReviews</title>
+    <!-- Load jQuery and DataTables styles and scripts -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: blue;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            color: blue;
+        }
+        th, td {
+            border: 1px solid blue;
+            padding: 8px;
+            text-align: left;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #F2F2F2;
+        }
+    </style>
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>var define = null;</script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
-<table id="flaskTable" class="table" style="width:100%">
-    <thead id="flaskHead">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>DOB</th>
-            <th>Age</th>
-        </tr>
-    </thead>
-    <tbody id="flaskBody"></tbody>
-</table>
+<body>
+    <form>
+        <p><label>
+          <body>
+            <h1> --- Add Review ---</h1>
+            <h5>Add a review for a UC!</h5>
+        </label></p>
+            School:
+            <br>
+            <br>
+        </label></p>
+            Review:
+            <input type="text" name="score" id="score" onchange="validate()" required> <!--validatescore function will run for this field-->
+        <p>
+            <button>❊ Add ❊</button>
+        </p>
+      </form>
+    <h1>-------------------------------------------------------------</h1>
+    <h1>UCReviews</h1>
+    <table id="flaskTable">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>School</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+        <tbody id="flaskBody"></tbody>
+    </table>
+    <script>
+        $(document).ready(function() {
+            fetch('http://172.27.138.205:8086/api/reviews/', { mode: 'cors' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('API response failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                for (const row of data) {
+                    // BUG warning/resolution - DataTable requires row to be single append
+                    $('#flaskBody').append('<tr><td>' +
+                        row.id + '</td><td>' +
+                        row.school + '</td><td>' +
+                        row.review + '</td></tr>');
+                }
+                // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
+                $("#flaskTable").DataTable();
+            })
+            .catch(error => {
+                console.error('Error!:', error);
+            });
+        });
+    </script>
+</body>
+</html>
 
-<script>
-  $(document).ready(function() {
-    fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('API response failed');
-      }
-      return response.json();
-    })
-    .then(data => {
-      for (const row of data) {
-        // BUG warning/resolution - DataTable requires row to be single append
-        $('#flaskBody').append('<tr><td>' + 
-            row.id + '</td><td>' + 
-            row.name + '</td><td>' + 
-            row.dob + '</td><td>' + 
-            row.age + '</td></tr>');
-      }
-      // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
-      $("#flaskTable").DataTable();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  });
-</script>
+
+
+
+
+
+
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/atlas/"></data>
