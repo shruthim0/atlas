@@ -1,0 +1,196 @@
+---
+layout: base
+permalink: /crudreview/
+title: CRUDREVIEW
+---
+
+<form>
+    <p><label>
+      <body>
+        School:
+        <input type="text" name="school" id="school" required> <!--make sure name and score are required fields-->
+    </label></p> 
+        Review:
+        <input type="text" name="review" id="review" required> <!--validatescore function will run for this field-->
+    <p>
+        <button>❊ Add ❊</button>
+    </p>
+  </form>
+  
+  
+  <!-- creates table w 2 columns titles Name and Score -->
+  <table>
+    <thead>
+    <tr>
+      <th>Number</th>
+      <th>School</th>
+      <th>Review</th>
+    </tr>
+    </thead>
+    <tbody id="result1">
+      <!-- javascript generated data -->
+    </tbody>
+  </table>
+  
+  </div>
+  
+  <script>
+  
+    // prepare HTML result container for new output
+    const resultContainer = document.getElementById("result1");
+    // prepare URL's to allow easy switch from deployment and localhost
+    const url = "http://172.27.138.205:8086/api/reviews/"
+    // const url = "http://172.26.198.166:8086/api/scores"
+    const create_fetch = url + '/create';
+    const read_fetch = url + '/';
+    const del_fetch = url + '/delete';
+  
+    // Load users on page entry
+    read_reviews();
+  
+    // Display User Table, data is fetched from Backend Database
+      function read_reviews() {
+      // prepare fetch options
+      const read_options = {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      };
+  
+  
+      // fetch the data from API
+      fetch(read_fetch, read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+          // check for response errors
+          if (response.status !== 200) {
+              const errorMsg = 'Database read error: ' + response.status;
+              console.log(errorMsg);
+              const tr = document.createElement("tr");
+              const td = document.createElement("td");
+              td.innerHTML = errorMsg;
+              tr.appendChild(td);
+              resultContainer.appendChild(tr);
+              return;
+          }
+          // valid response will have json data
+          response.json().then(data => {
+              console.log(data);
+              for (let row in data) {
+                console.log(data[row]);
+                add_row(data[row]);
+              }
+          })
+      })
+      // catch fetch errors (ie ACCESS to server blocked)
+      .catch(err => {
+        console.error(err);
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.innerHTML = err;
+        tr.appendChild(td);
+        resultContainer.appendChild(tr);
+      });
+    }
+  
+   
+    function create_review(){
+      //Creates user with inputted score
+      const body = {
+          id: document.getElementById("id").value,
+          school: document.getElementById("school").value,
+          review: document.getElementById("review").value,
+      };
+      const requestOptions = {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: {
+              "content-type": "application/json",
+              'Authorization': 'Bearer my-token',
+          },
+      };
+  
+      // URL for Create API
+      // Fetch API call to the database to create a new user
+      fetch(create_fetch, requestOptions)
+        .then(response => {
+          // trap error response from Web API
+          if (response.status !== 200) {
+            const errorMsg = 'Database create error: ' + response.status;
+            console.log(errorMsg);
+            const tr = document.createElement("tr");
+            const td = document.createElement("td");
+            td.innerHTML = errorMsg;
+            tr.appendChild(td);
+            resultContainer.appendChild(tr);
+            return;
+          }
+          // response contains valid result
+          response.json().then(data => {
+              console.log(data);
+              const errorMsg = 'createdsuccesfully'
+              //add a table row for the new/created score
+              add_row(data);
+          })
+      })
+    }
+  
+    function add_row(data) {
+      const tr = document.createElement("tr");
+      const id = document.createElement("td");
+      const school = document.createElement("td");
+      const review = document.createElement("td");
+    
+  
+      // obtain data that is specific to the API
+      id.innerHTML = data.id; 
+      school.innerHTML = data.school; 
+      review.innerHTML = data.review; 
+  
+      // add HTML to container
+      tr.appendChild(id);
+      tr.appendChild(school);
+      tr.appendChild(review);
+  
+      resultContainer.appendChild(tr);
+    }
+  
+  // delete method
+  function delete_record() {
+    const delOptions = {
+          method: 'DELETE',
+          headers: {
+              "content-type": "application/json",
+              'Authorization': 'Bearer my-token',
+          },
+      };
+  
+      // delete url
+      // do a fetch call to delete api
+      fetch(del_fetch, delOptions)
+        .then(response => {
+          // BUT trap error response from web api
+          if (response.status !== 200) {    // 200-->success
+            window.location.reload();      
+            return;
+          }
+          // response has valid result
+          response.json().then(data => {
+              console.log(data)
+              alert("All records have been DELETED, refresh the page for most updated version.");  //once delete works, user is prompted to refresh screen
+          })
+      })
+    }
+    
+  // validate user name and score
+  </script>
+  
+  <div>
+    <form action="javascript:delete_record()">
+      <button>Delete Records</button>
+    </form>
+  <div>
