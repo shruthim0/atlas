@@ -4,193 +4,117 @@ permalink: /crudreview/
 title: CRUDREVIEW
 ---
 
-<form>
-    <p><label>
-      <body>
+<head>
+    <title>UCReviews</title>
+    <!-- Load jQuery and DataTables styles and scripts -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: blue;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            color: blue;
+        }
+        th, td {
+            border: 1px solid blue;
+            padding: 8px;
+            text-align: left;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #F2F2F2;
+        }
+    </style>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <form>
+        <p><label>
+            <h1> --- Add Review ---</h1>
+            <h5>Add a review for a UC!</h5>
+        </label></p>
         School:
-        <input type="text" name="school" id="school" required> <!--make sure name and score are required fields-->
-    </label></p> 
+        <input type="text" name="school" id="school"  required>
+        <br>
+        <br>
         Review:
-        <input type="text" name="review" id="review" required> <!--validatescore function will run for this field-->
-    <p>
-        <button>❊ Add ❊</button>
-    </p>
-  </form>
-  
-  
-  <!-- creates table w 2 columns titles Name and Score -->
-  <table>
-    <thead>
-    <tr>
-      <th>Number</th>
-      <th>School</th>
-      <th>Review</th>
-    </tr>
-    </thead>
-    <tbody id="result1">
-      <!-- javascript generated data -->
-    </tbody>
-  </table>
-  
-  </div>
-  
-  <script>
-  
-    // prepare HTML result container for new output
-    const resultContainer = document.getElementById("result1");
-    // prepare URL's to allow easy switch from deployment and localhost
-    const url = "http://172.27.138.205:8086/api/reviews/"
-    // const url = "http://172.26.198.166:8086/api/scores"
-    const create_fetch = url + '/create';
-    const read_fetch = url + '/';
-    const del_fetch = url + '/delete';
-  
-    // Load users on page entry
-    read_reviews();
-  
-    // Display User Table, data is fetched from Backend Database
-      function read_reviews() {
-      // prepare fetch options
-      const read_options = {
-        method: 'GET', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'omit', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      };
-  
-  
-      // fetch the data from API
-      fetch(read_fetch, read_options)
-        // response is a RESTful "promise" on any successful fetch
-        .then(response => {
-          // check for response errors
-          if (response.status !== 200) {
-              const errorMsg = 'Database read error: ' + response.status;
-              console.log(errorMsg);
-              const tr = document.createElement("tr");
-              const td = document.createElement("td");
-              td.innerHTML = errorMsg;
-              tr.appendChild(td);
-              resultContainer.appendChild(tr);
-              return;
-          }
-          // valid response will have json data
-          response.json().then(data => {
-              console.log(data);
-              for (let row in data) {
-                console.log(data[row]);
-                add_row(data[row]);
-              }
-          })
-      })
-      // catch fetch errors (ie ACCESS to server blocked)
-      .catch(err => {
-        console.error(err);
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.innerHTML = err;
-        tr.appendChild(td);
-        resultContainer.appendChild(tr);
-      });
-    }
-  
-   
-    function create_review(){
-      //Creates user with inputted score
-      const body = {
-          id: document.getElementById("id").value,
-          school: document.getElementById("school").value,
-          review: document.getElementById("review").value,
-      };
-      const requestOptions = {
-          method: 'POST',
-          body: JSON.stringify(body),
-          headers: {
-              "content-type": "application/json",
-              'Authorization': 'Bearer my-token',
-          },
-      };
-  
-      // URL for Create API
-      // Fetch API call to the database to create a new user
-      fetch(create_fetch, requestOptions)
-        .then(response => {
-          // trap error response from Web API
-          if (response.status !== 200) {
-            const errorMsg = 'Database create error: ' + response.status;
-            console.log(errorMsg);
-            const tr = document.createElement("tr");
-            const td = document.createElement("td");
-            td.innerHTML = errorMsg;
-            tr.appendChild(td);
-            resultContainer.appendChild(tr);
-            return;
-          }
-          // response contains valid result
-          response.json().then(data => {
-              console.log(data);
-              const errorMsg = 'createdsuccesfully'
-              //add a table row for the new/created score
-              add_row(data);
-          })
-      })
-    }
-  
-    function add_row(data) {
-      const tr = document.createElement("tr");
-      const id = document.createElement("td");
-      const school = document.createElement("td");
-      const review = document.createElement("td");
-    
-  
-      // obtain data that is specific to the API
-      id.innerHTML = data.id; 
-      school.innerHTML = data.school; 
-      review.innerHTML = data.review; 
-  
-      // add HTML to container
-      tr.appendChild(id);
-      tr.appendChild(school);
-      tr.appendChild(review);
-  
-      resultContainer.appendChild(tr);
-    }
-  
-  // delete method
-  function delete_record() {
-    const delOptions = {
-          method: 'DELETE',
-          headers: {
-              "content-type": "application/json",
-              'Authorization': 'Bearer my-token',
-          },
-      };
-  
-      // delete url
-      // do a fetch call to delete api
-      fetch(del_fetch, delOptions)
-        .then(response => {
-          // BUT trap error response from web api
-          if (response.status !== 200) {    // 200-->success
-            window.location.reload();      
-            return;
-          }
-          // response has valid result
-          response.json().then(data => {
-              console.log(data)
-              alert("All records have been DELETED, refresh the page for most updated version.");  //once delete works, user is prompted to refresh screen
-          })
-      })
-    }
-    
-  // validate user name and score
-  </script>
-  
-  <div>
-    <form action="javascript:delete_record()">
-      <button>Delete Records</button>
+        <input type="text" name="review" id="review" required>
+        <p>
+            <button onclick="create_review()">❊ Add ❊</button>
+        </p>
     </form>
-  <div>
+    <h1>-------------------------------------------------------------</h1>
+    <h1>UCReviews</h1>
+    <table id="flaskTable">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>School</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+        <tbody id="flaskBody"></tbody>
+    </table>
+    <script>
+        $(document).ready(function () {
+            fetch('http://172.27.138.205:8086/api/reviews/', { mode: 'cors' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('API response failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    for (const row of data) {
+                        $('#flaskBody').append('<tr><td>' +
+                            row.id + '</td><td>' +
+                            row.school + '</td><td>' +
+                            row.review + '</td></tr>');
+                    }
+                    $("#flaskTable").DataTable();
+                })
+                .catch(error => {
+                    console.error('Error!:', error);
+                });
+        });
+
+        function create_review() {
+            const body = {
+                school: document.getElementById("school").value,
+                review: document.getElementById("review").value,
+            };
+            const requestOptions = {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    "content-type": "application/json",
+                    'Authorization': 'Bearer my-token',
+                },
+            };
+
+            fetch('http://172.27.138.205:8086/api/reviews/create', requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('API response failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const newRow = '<tr><td>' + data.id + '</td><td>' + data.school + '</td><td>' + data.review + '</td></tr>';
+                    $('#flaskBody').append(newRow);
+                    $("#flaskTable").DataTable().row.add($(newRow)).draw(false);
+                })
+                .catch(error => {
+                    console.error('Error!:', error);
+                });
+        }
+    </script>
+</body>
+</html>
