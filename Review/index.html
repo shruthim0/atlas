@@ -156,6 +156,7 @@ window.onload = wrap_img;
   function create_review() {
     // Creates review with inputted data
     const body = {
+      id: document.getElementById("id").value,
       school: document.getElementById("school").value,
       review: document.getElementById("review").value,
     };
@@ -195,14 +196,17 @@ window.onload = wrap_img;
 
   function add_row(data) {
     const tr = document.createElement("tr");
+    const id = document.createElement("td");
     const school = document.createElement("td");
     const review = document.createElement("td");
 
     // obtain data that is specific to the API
+    school.innerHTML = data.id;
     school.innerHTML = data.school; 
     review.innerHTML = data.review; 
 
     // add HTML to container
+    tr.appendChild(id);
     tr.appendChild(school);
     tr.appendChild(review);
 
