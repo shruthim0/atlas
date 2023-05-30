@@ -74,8 +74,8 @@ window.onload = wrap_img;
       <input type="text" name="school" id="school" required> <!-- make sure name and review are required fields -->
     </label>
   </p> 
-  Review:
-  <input type="text" name="review" id="review" required> <!-- validatescore function will run for this field -->
+      Review:
+  <input type="text" name="review" id="review" required> 
   <p>
     <button>❊ Add ❊</button>
   </p>
@@ -96,9 +96,7 @@ window.onload = wrap_img;
 </table>
 
 <script>
-  // prepare HTML result container for new output
   const resultContainer = document.getElementById("result1");
-  // prepare URL's to allow easy switch from deployment and localhost
   // const url = "http://172.27.138.205:8086/api/reviews/";
   const url = "https://atlasnow.duckdns.org/api/reviews/";
   const create_fetch = url + '/create';
@@ -158,7 +156,6 @@ window.onload = wrap_img;
   function create_review() {
     // Creates review with inputted data
     const body = {
-      id: document.getElementById("id").value,
       school: document.getElementById("school").value,
       review: document.getElementById("review").value,
     };
@@ -198,17 +195,14 @@ window.onload = wrap_img;
 
   function add_row(data) {
     const tr = document.createElement("tr");
-    const id = document.createElement("td");
     const school = document.createElement("td");
     const review = document.createElement("td");
 
     // obtain data that is specific to the API
-    id.innerHTML = data.id; 
     school.innerHTML = data.school; 
     review.innerHTML = data.review; 
 
     // add HTML to container
-    tr.appendChild(id);
     tr.appendChild(school);
     tr.appendChild(review);
 

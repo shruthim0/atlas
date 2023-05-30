@@ -121,74 +121,83 @@ window.onload = wrap_img;
 </html> 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() 
-    // Retrieve data from the server-side (e.g., using AJAX or fetch API)
-    // fetch('')
-            //.then(response => response.json())
-            //.then(data => {
-               // populateTable(data);
-          // });
-          function populateTable(data) {
-                const tableBody = document.getElementById('tableBody');
-                tableBody.innerHTML = '';
+          
+          {const btnfind = document.getElementById("search_button");
+          btnfind.addEventListener('click', (event) => {
+          console.log("Find Clicked!");
+          clearTable();
+         
+          var fact_school_value = school_filter.value;
+          var fact_fact_value = fact_filter.value;  //sets variable to the value of the filter that the user selects
 
-                data.forEach(item => {
-                    const row = document.createElement('tr');
-                    const idCell = document.createElement('td');
-                    idCell.textContent = item.id;
-                    const schoolCell = document.createElement('td');
-                    schoolCell.textContent = item.school;
-                    const factCell = document.createElement('td');
-                    rateCell.textContent = item.rate;
 
-                    row.appendChild(idCell);
-                    row.appendChild(schoolCell);
-                    row.appendChild(factCell);
-                    tableBody.appendChild(row);
-                })
-            }
+          var fact_list = getFactResults(fact_school_value, fact_fact_value); //setting dealership_list to the result gotten in the function getDealershipResults
 
-            function sortTable(column) {
-                // Implement sorting logic based on the selected column
-                // Retrieve the data, sort it, and update the table using populateTable()
-            }
 
-            function filterTable() {
-                const filterInput = document.getElementById('filterInput');
-                const filterValue = filterInput.value.toLowerCase();
-                const tableBody = document.getElementById('tableBody');
-                const rows = tableBody.getElementsByTagName('tr');
+          console.log("Filtered facts retrieved!");
+          console.log(facts_list);
+          console.log("Creating table!");
 
-                for (let i = 0; i < rows.length; i++) {
-                    const idCell = rows[i].getElementsByTagName('td')[0];
-                    const schoolCell = rows[i].getElementsByTagName('td')[0];
-                    const factCell = rows[i].getElementsByTagName('td')[1];
 
-                    if (schoolCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
-                        factCell.textContent.toLowerCase().indexOf(filterValue) > -1) {
-                        rows[i].style.display = '';
-                    } else {
-                        rows[i].style.display = 'none';
-                    }
-                }
-            }
+          for (const fact of fact_list) {
+            console.log(fact);
 
-            const sortableHeaders = document.getElementsByClassName('sortable');
-            for (let i = 0; i < sortableHeaders.length; i++) {
-                sortableHeaders[i].addEventListener('click', function() {
-                    const column = this.getAttribute('data-column');
-                    sortTables(column);
-                });
-            }
 
-            const filterInput = document.getElementById('filterInput');
-            filterInput.addEventListener('keyup', function() {
-                filterTable();
+            const tr = document.createElement("tr");
+
+
+            const school_ele = document.createElement("td");
+            school_ele.innerHTML = fact.school;
+
+
+            const fact_ele = document.createElement("td");
+            fact_ele.innerHTML = fact.fact;
+
+
+            // this builds ALL td's (cells) into tr element
+            tr.appendChild(school_ele);
+            tr.appendChild(fact_ele);
+
+
+            resultContainer.appendChild(tr);
+          }
+    });
+
+    function clearTable() {
+        var tableRows = resultContainer.getElementsByTagName('tr');
+        var rowCount = tableRows.length;
+        for (var x=rowCount-1; x>=0; x--) {
+            resultContainer.removeChild(tableRows[x]);
+        }
+
+    }
+
+      function getFactResults 
+        fetch('').then(function(response) {
+                return response.json();
+            }).then(function(data) {
+                console.log(data);
+                all_dealerships = data;
+            }).catch(function(err) {
+                console.log(err);
             });
-        });
-    </script>
-</body>
-</html>
+    }
+
+      function getFactResults(school, fact) {
+        var result = [];
+        for (const fact of all_facts){
+              console.log(fact);
+
+            if ((fact["school"] === school || !school) &&
+                (fact)["fact"] === fact || !fact) {
+                result.push(dealership);
+            }
+
+        }
+        return result;
+      }
+</script>
+          }
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/atlas/"></data>
