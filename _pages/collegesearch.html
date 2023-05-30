@@ -69,7 +69,7 @@ title: College Search
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Retrieve data from the server-side (e.g., using AJAX or fetch API)
-            fetch('http://10.8.136.169:8086/api/unis/')
+            fetch('https://atlasnow.duckdns.org/api/unis/')
                 .then(response => response.json())
                 .then(data => {
                     populateTable(data);
