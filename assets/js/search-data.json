@@ -90,14 +90,6 @@
   
 
   
-      ,"page9": {
-          "title": "Test",
-          "content": "Search College For More Info . id College City Acceptance Rate Student to Faculty Ratio Top 3 Majors . .",
-          "url": "https://shruthim0.github.io/atlas/test",
-          "relUrl": "/test",
-          "date": ""
-      }
-      
   
 
   
@@ -110,10 +102,7 @@
   
 
   
-  
-
-  
-      ,"page14": {
+      ,"page13": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",
