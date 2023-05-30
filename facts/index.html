@@ -112,7 +112,7 @@ window.onload = wrap_img;
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>School</th>
                 <th> Fun Facts</th>
             </tr>
         </thead>
@@ -121,14 +121,74 @@ window.onload = wrap_img;
 </html> 
 
 <script>
-    //document.addEventListener('DOMContentLoaded', function() 
+    document.addEventListener('DOMContentLoaded', function() 
     // Retrieve data from the server-side (e.g., using AJAX or fetch API)
-        //fetch('')
+    // fetch('')
             //.then(response => response.json())
             //.then(data => {
-           //     populateTable(data);
-           // });
-</script>
+               // populateTable(data);
+          // });
+          function populateTable(data) {
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    const idCell = document.createElement('td');
+                    idCell.textContent = item.id;
+                    const schoolCell = document.createElement('td');
+                    schoolCell.textContent = item.school;
+                    const factCell = document.createElement('td');
+                    rateCell.textContent = item.rate;
+
+                    row.appendChild(idCell);
+                    row.appendChild(schoolCell);
+                    row.appendChild(factCell);
+                    tableBody.appendChild(row);
+                })
+            }
+
+            function sortTable(column) {
+                // Implement sorting logic based on the selected column
+                // Retrieve the data, sort it, and update the table using populateTable()
+            }
+
+            function filterTable() {
+                const filterInput = document.getElementById('filterInput');
+                const filterValue = filterInput.value.toLowerCase();
+                const tableBody = document.getElementById('tableBody');
+                const rows = tableBody.getElementsByTagName('tr');
+
+                for (let i = 0; i < rows.length; i++) {
+                    const idCell = rows[i].getElementsByTagName('td')[0];
+                    const schoolCell = rows[i].getElementsByTagName('td')[0];
+                    const factCell = rows[i].getElementsByTagName('td')[1];
+
+                    if (schoolCell.textContent.toLowerCase().indexOf(filterValue) > -1 ||
+                        factCell.textContent.toLowerCase().indexOf(filterValue) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+
+            const sortableHeaders = document.getElementsByClassName('sortable');
+            for (let i = 0; i < sortableHeaders.length; i++) {
+                sortableHeaders[i].addEventListener('click', function() {
+                    const column = this.getAttribute('data-column');
+                    sortTables(column);
+                });
+            }
+
+            const filterInput = document.getElementById('filterInput');
+            filterInput.addEventListener('keyup', function() {
+                filterTable();
+            });
+        });
+    </script>
+</body>
+</html>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/atlas/"></data>
