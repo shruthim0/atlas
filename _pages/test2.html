@@ -16,8 +16,11 @@ title: Test2
         <tr>
             <th>ID</th>
             <th>College</th>
+            <th>City</th>
             <th>Acceptance Rate</th>
+            <th>Area/th>
             <th>Student to Faculty Ratio</th>
+            <th>Top Majorso</th>
         </tr>
     </thead>
     <tbody id="flaskBody"></tbody>
@@ -25,7 +28,7 @@ title: Test2
 
 <script>
   $(document).ready(function() {
-    fetch('https://atlasnow.duckdns.org/api/unis/', { mode: 'cors' })
+    fetch('https://atlasnow.duckdns.org/api/colleges/', { mode: 'cors' })
     .then(response => {
       if (!response.ok) {
         throw new Error('API response failed');
@@ -37,9 +40,12 @@ title: Test2
         // BUG warning/resolution - DataTable requires row to be single append
         $('#flaskBody').append('<tr><td>' + 
             row.id + '</td><td>' + 
-            row.school + '</td><td>' + 
-            row.rate + '</td><td>' + 
-            row.stufac + '</td></tr>');
+            row.college + '</td><td>' + 
+            row.city + '</td><td>' + 
+            row.rate + '</td><td>' +
+            row.area + '</td><td>' +
+            row.stufac + '</td><td>' +
+            row.majors + '</td></tr>');
       }
       // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
       $("#flaskTable").DataTable();
