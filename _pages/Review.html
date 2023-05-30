@@ -11,8 +11,8 @@ title: UCReview
       <input type="text" name="school" id="school" required> <!-- make sure name and review are required fields -->
     </label>
   </p> 
-  Review:
-  <input type="text" name="review" id="review" required> <!-- validatescore function will run for this field -->
+      Review:
+  <input type="text" name="review" id="review" required> 
   <p>
     <button>❊ Add ❊</button>
   </p>
@@ -33,9 +33,7 @@ title: UCReview
 </table>
 
 <script>
-  // prepare HTML result container for new output
   const resultContainer = document.getElementById("result1");
-  // prepare URL's to allow easy switch from deployment and localhost
   // const url = "http://172.27.138.205:8086/api/reviews/";
   const url = "https://atlasnow.duckdns.org/api/reviews/";
   const create_fetch = url + '/create';
@@ -95,7 +93,6 @@ title: UCReview
   function create_review() {
     // Creates review with inputted data
     const body = {
-      id: document.getElementById("id").value,
       school: document.getElementById("school").value,
       review: document.getElementById("review").value,
     };
