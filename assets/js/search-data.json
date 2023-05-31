@@ -90,14 +90,6 @@
   
 
   
-      ,"page9": {
-          "title": "Test2",
-          "content": ". ID College City Acceptance Rate Area/th&gt; Student to Faculty Ratio Top Majors &lt;/tr&gt; &lt;/thead&gt; &lt;/table&gt; .",
-          "url": "https://shruthim0.github.io/atlas/test2",
-          "relUrl": "/test2",
-          "date": ""
-      }
-      
   
 
   
@@ -110,10 +102,7 @@
   
 
   
-  
-
-  
-      ,"page14": {
+      ,"page13": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",
