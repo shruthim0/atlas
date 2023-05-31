@@ -173,7 +173,7 @@ window.onload = wrap_img;
     }
 
       function getFactResults 
-        fetch('').then(function(response) {
+        fetch('https://atlasnow.duckdns.org/api/facts/').then(function(response) {
                 return response.json();
             }).then(function(data) {
                 console.log(data);
@@ -190,7 +190,7 @@ window.onload = wrap_img;
 
             if ((fact["school"] === school || !school) &&
                 (fact)["fact"] === fact || !fact) {
-                result.push(dealership);
+                result.push(fact);
             }
 
         }
