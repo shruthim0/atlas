@@ -3,175 +3,313 @@ layout: base
 permalink: /CollegeFinder/
 title: College Finder
 ---
+<!DOCTYPE html>
 <html>
+<head>
+    <title>UC Schools Scoreboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    
+        h2 {
+            text-align: center;
+        }
+    
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        p {
+            margin-top: 0;
+        }
+    
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #0a23c5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button:hover {
+            background-color: #12a6eb;
+        }
+    
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+    
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid black;
+        }
+    
+        th {
+            background-color: #0a23c5;
+            color: white;
+        }
+    
+        td:first-child {
+            font-weight: bold;
+        }
+    
+        /* Updated styles for the table */
+        #scoreTable {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        #scoreTable th, #scoreTable td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid black;
+        }
+    
+        #scoreTable th {
+            background-color: #0a23c5;
+            color: white;
+        }
+    
+        #scoreTable td:first-child {
+            font-weight: bold;
+        }
+    
+        #scoreTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    
+        #scoreTable tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
 <body>
-<div data-aos="fade-middle">
-</div>
+    <div class="container" data-aos="fade-middle">
+        <h2>College Finder</h2>
+        <div id="question1">
+            <p>How big do you want your school to be?</p>
+            <button onclick="increaseScore([4, 7, 9]); showNextQuestion('question2')">Small (less than 20,000 students)</button>
+            <button onclick="increaseScore([3, 5, 8]); showNextQuestion('question2')">Medium (20,000-30,000 students)</button>
+            <button onclick="increaseScore([0, 2, 3, 6]); showNextQuestion('question2')">Large (more than 30,000 students)</button>
+        </div>
+        <div id="question2" style="display: none">
+            <p>Which location do you prefer?</p>
+            <button onclick="increaseScore([0, 3, 6, 7]); showNextQuestion('question3')">Urban</button>
+            <button onclick="increaseScore([1, 2, 5, 8, 9]); showNextQuestion('question3')">Suburban</button>
+            <button onclick="increaseScore([4]); showNextQuestion('question3')">Rural</button>
+        </div>
+        <div id="question3" style="display: none">
+            <p>How prestigious do you want your school to be?</p>
+            <button onclick="increaseScore([4, 5, 7]); showNextQuestion('question4')">Not very prestigious</button>
+            <button onclick="increaseScore([1, 6, 9]); showNextQuestion('question4')">Semi-prestigious</button>
+            <button onclick="increaseScore([0, 2, 3, 8]); showNextQuestion('question4')">Very prestigious</button>
+        </div>
+        <div id="question4" style="display: none">
+            <p>What do you prefer?</p>
+            <button onclick="increaseScore([6, 8, 3]); showNextQuestion('question5')">The beach</button>
+            <button onclick="increaseScore([9, 5]); showNextQuestion('question5')">The forest</button>
+            <button onclick="increaseScore([0, 1, 4, 2, 7]); showNextQuestion('question5')">The mountains</button>
+        </div>
+        <div id="question5" style="display: none">
+            <p>How good do you want the sports to be?</p>
+            <button onclick="increaseScore([0, 3, 8, 6]); showNextQuestion('question6')">Very good (high D1)</button>
+            <button onclick="increaseScore([1, 2, 5]); showNextQuestion('question6')">Good (Low D1-D2)</button>
+            <button onclick="increaseScore([7, 9, 4]); showNextQuestion('question6')">Sports do not matter to me much (D3)</button>
+        </div>
+        <div id="question6" style="display: none">
+            <p>What do you want to study?</p>
+            <select id="major">
+                <option value="accounting">Accounting</option>
+                <option value="architecture">Architecture</option>
+                <option value="biology">Biology</option>
+                <option value="business-administration">Business Administration</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="civil-engineering">Civil Engineering</option>
+                <option value="communication-studies">Communication Studies</option>
+                <option value="computer-science">Computer Science</option>
+                <option value="economics">Economics</option>
+                <option value="education">Education</option>
+                <option value="electrical-engineering">Electrical Engineering</option>
+                <option value="english">English</option>
+                <option value="finance">Finance</option>
+                <option value="graphic-design">Graphic Design</option>
+                <option value="history">History</option>
+                <option value="information-technology">Information Technology</option>
+                <option value="international-relations">International Relations</option>
+                <option value="journalism">Journalism</option>
+                <option value="marketing">Marketing</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="mechanical-engineering">Mechanical Engineering</option>
+                <option value="music">Music</option>
+                <option value="nursing">Nursing</option>
+                <option value="philosophy">Philosophy</option>
+                <option value="physics">Physics</option>
+                <option value="political-science">Political Science</option>
+                <option value="psychology">Psychology</option>
+                <option value="sociology">Sociology</option>
+                <option value="theater">Theater</option>
+                <option value="visual-arts">Visual Arts</option>
+            </select>
+            <br>
+            <button onclick="increaseScore([]); showNextQuestion('question7')">Submit</button>
+        </div>
+        <div id="question7" style="display: none">
+            <p>Do you want to live in a college town?</p>
+            <button onclick="increaseScore([1]); showNextQuestion('question8')">Yes</button>
+            <button onclick="increaseScore([]); showNextQuestion('question8')">No</button>
+            <button onclick="increaseScore([]); showNextQuestion('question8')">Doesn't matter</button>
+        </div>
+        <div id="question8" style="display: none">
+            <p>Do you want on-campus housing?</p>
+            <button onclick="increaseScore([8, 6, 1]); showNextQuestion('question9')">Yes</button>
+            <button onclick="increaseScore([0, 2, 9, 3]); showNextQuestion('question9')">No</button>
+            <button onclick="increaseScore([5, 7, 4]); showNextQuestion('question9')">I don't have a preference</button>
+        </div>
+        <div id="question9" style="display: none">
+            <p>Do you want to engage in Greek Life?</p>
+            <button onclick="increaseScore([0, 1, 8, 3]); showNextQuestion('question10')">Yes</button>
+            <button onclick="increaseScore([5, 4, 7]); showNextQuestion('question10')">No</button>
+            <button onclick="increaseScore([6, 9, 2]); showNextQuestion('question10')">Maybe</button>
+        </div>
+        <div id="question10" style="display: none">
+            <p>How much money are you willing to pay?</p>
+            <button onclick="increaseScore([3, 0, 6, 8]); showNextQuestion('question11')">Money is not an issue</button>
+            <button onclick="increaseScore([1, 2, 9]); showNextQuestion('question11')">I am willing to pay quite a bit </button>
+            <button onclick="increaseScore([5, 4, 7]); showNextQuestion('question11')">Cheapest possible </button>
+        </div>
+        <div id="question11" style="display: none">
+            <button id="submitBtn" onclick="submitScores()">Submit</button>
+        </div>
+    </div>
+    
+    <table id="scoreTable" style="display: none;">
+        <tr>
+            <th>Rank</th>
+            <th id="rankHeader">UC School</th>
+            <th>Score</th>
+        </tr>
+        <tr id="school1">
+            <td id="rank1"></td>
+            <td>UC Berkeley</td>
+            <td id="score1">0</td>
+        </tr>
+        <tr id="school2">
+            <td id="rank2"></td>
+            <td>UC Davis</td>
+            <td id="score2">0</td>
+        </tr>
+        <tr id="school3">
+            <td id="rank3"></td>
+            <td>UC Irvine</td>
+            <td id="score3">0</td>
+        </tr>
+        <tr id="school4">
+            <td id="rank4"></td>
+            <td>UC Los Angeles</td>
+            <td id="score4">0</td>
+        </tr>
+        <tr id="school5">
+            <td id="rank5"></td>
+            <td>UC Merced</td>
+            <td id="score5">0</td>
+        </tr>
+        <tr id="school6">
+            <td id="rank6"></td>
+            <td>UC Riverside</td>
+            <td id="score6">0</td>
+        </tr>
+        <tr id="school7">
+            <td id="rank7"></td>
+            <td>UC San Diego</td>
+            <td id="score7">0</td>
+        </tr>
+        <tr id="school8">
+            <td id="rank8"></td>
+            <td>UC San Francisco</td>
+            <td id="score8">0</td>
+        </tr>
+        <tr id="school9">
+            <td id="rank9"></td>
+            <td>UC Santa Barbara</td>
+            <td id="score9">0</td>
+        </tr>
+        <tr id="school10">
+            <td id="rank10"></td>
+            <td>UC Santa Cruz</td>
+            <td id="score10">0</td>
+        </tr>
+    </table>
+    <script>
+        // Array of UC Schools
+        var ucSchools = [
+            { name: "UC Berkeley", score: 0 },
+            { name: "UC Davis", score: 0 },
+            { name: "UC Irvine", score: 0 },
+            { name: "UC Los Angeles", score: 0 },
+            { name: "UC Merced", score: 0 },
+            { name: "UC Riverside", score: 0 },
+            { name: "UC San Diego", score: 0 },
+            { name: "UC San Francisco", score: 0 },
+            { name: "UC Santa Barbara", score: 0 },
+            { name: "UC Santa Cruz", score: 0 }
+        ];
 
-<script>
-var questionIndex = 1;
+        var currentQuestionIndex = 1;
 
+        function showNextQuestion(nextQuestionId) {
+            document.getElementById("question" + currentQuestionIndex).style.display = "none";
+            document.getElementById(nextQuestionId).style.display = "block";
+            currentQuestionIndex++;
+        }
 
-function answer(response) {
-  document.getElementById("question" + questionIndex).style.display = "none";
- questionIndex++;
+        // Function to increase the score of the specified UC Schools
+        function increaseScore(indices) {
+            for (let i = 0; i < indices.length; i++) {
+                const index = indices[i];
+                ucSchools[index].score++;
+                document.getElementById("score" + (index + 1)).textContent = ucSchools[index].score;
+            }
+        }
 
+        // Function to submit the scores and update the table
+        function submitScores() {
+            ucSchools.sort((a, b) => b.score - a.score); // Sort UC Schools by score in descending order
 
- if (questionIndex <= 10) {
-   document.getElementById("question" + questionIndex).style.display = "block";
- } else {
-   showResult();
- }
-  if (response === 'small') {
-   // Find UC Berkeley and UC Los Angeles in the uc_scores array
-   var ucBerkeley = uc_scores.find(item => item.school === 'UC Berkeley');
-   var ucLosAngeles = uc_scores.find(item => item.school === 'UC Los Angeles');
+            for (let i = 0; i < ucSchools.length; i++) {
+                document.getElementById("score" + (i + 1)).textContent = ucSchools[i].score;
+                document.getElementById("school" + (i + 1)).textContent = ucSchools[i].name; // Update school names
+            }
 
+            document.getElementById("rankHeader").textContent = "Rank"; // Show the first column header as "Rank"
+            document.getElementById("submitBtn").disabled = true; // Disable the submit button after scores are submitted
 
-   // Increase the scores of UC Berkeley and UC Los Angeles
-   ucBerkeley.score += 5;
-   ucLosAngeles.score += 3;
- }
-}
-</script>
+            document.getElementById("scoreTable").style.display = "table"; // Display the table with updated rankings
+        }
+    </script>
 
-<div data-aos="fade-middle">
-<h2>College Finder</h2>
-<div id="question1">
-  <p>How big do you want your school to be?</p>
-  <button onclick="answer('small')">Small (less than 5,000 students)</button>
-  <button onclick="answer('medium')">Medium (5,000-15,000 students)</button>
-  <button onclick="answer('large')">Large (more than 15,000 students)</button>
-</div>
-<div id="question2" style="display: none">
-  <p>Which location do you prefer?</p>
-  <button onclick="answer('urban')">Urban</button>
-  <button onclick="answer('suburban')">Suburban</button>
-  <button onclick="answer('rural')">Rural</button>
-</div>
-<div id="question3" style="display: none">
-  <p>How prestigious do you want your school to be?</p>
-  <button onclick="answer('notprestigious')">Not very prestigious</button>
-  <button onclick="answer('semiprestigious')">Semi-prestigious</button>
-  <button onclick="answer('veryprestigious')">Very prestigious</button>
-</div>
-<div id="question4" style="display: none">
-  <p>What do you prefer?</p>
-  <button onclick="answer('beach')">The beach</button>
-  <button onclick="answer('forest')">The forest</button>
-  <button onclick="answer('mountains')">The mountains</button>
-</div>
-<div id="question5" style="display: none">
-  <p>How good do you want the sports to be?</p>
-  <button onclick="answer('verygood')">Very good (high D1)</button>
-  <button onclick="answer('good')">Good (Low D1-D2)</button>
-  <button onclick="answer('notgood')">Sports do not matter to me much (D3)</button>
-</div>
-<div id="question6" style="display: none">
-  <p>What do you want to study?</p>
-  <select id="major">
-    <option value="accounting">Accounting</option>
-    <option value="architecture">Architecture</option>
-    <option value="biology">Biology</option>
-    <option value="business-administration">Business Administration</option>
-    <option value="chemistry">Chemistry</option>
-    <option value="civil-engineering">Civil Engineering</option>
-    <option value="communication-studies">Communication Studies</option>
-    <option value="computer-science">Computer Science</option>
-    <option value="economics">Economics</option>
-    <option value="education">Education</option>
-    <option value="electrical-engineering">Electrical Engineering</option>
-    <option value="english">English</option>
-    <option value="finance">Finance</option>
-    <option value="graphic-design">Graphic Design</option>
-    <option value="history">History</option>
-    <option value="information-technology">Information Technology</option>
-    <option value="international-relations">International Relations</option>
-    <option value="journalism">Journalism</option>
-    <option value="marketing">Marketing</option>
-    <option value="mathematics">Mathematics</option>
-    <option value="mechanical-engineering">Mechanical Engineering</option>
-    <option value="music">Music</option>
-    <option value="nursing">Nursing</option>
-    <option value="philosophy">Philosophy</option>
-    <option value="physics">Physics</option>
-    <option value="political-science">Political Science</option>
-    <option value="psychology">Psychology</option>
-    <option value="sociology">Sociology</option>
-    <option value="theater">Theater</option>
-    <option value="visual-arts">Visual Arts</option>
-  </select>
-    <br>
-  <button onclick="answer(false)">Submit</button>
-</div>
-<div id="question7" style="display: none">
-  <p>Do you want to live in a college town?</p>
-  <button onclick="answer('collegetown')">Yes</button>
-  <button onclick="answer('nocollegetown')">No</button>
-  <button onclick="answer('maybecollegetown')">Doesn't matter</button>
-</div>
-<div id="question8" style="display: none">
-  <p>Do you want on-campus housing?</p>
-  <button onclick="answer('oncampus')">Yes</button>
-  <button onclick="answer('offcampus')">No</button>
-  <button onclick="answer('nopreference')">I don't have a preference</button>
-</div>
-<div id="question9" style="display: none">
-  <p>Do you want to engage in Greek Life?</p>
-  <button onclick="answer('greeklife')">Yes</button>
-  <button onclick="answer('nogreeklife')">No</button>
-  <button onclick="answer('maybegreeklife')">Maybe</button>
-</div>
-<div id="question10" style="display: none">
-  <p>How much money are you willing to pay?</p>
-  <button onclick="answer('bigmoney')">Money is not an issue</button>
-  <button onclick="answer('midmoney')">I am willing to pay quite a bit (30,000-50,000)</button>
-  <button onclick="answer('lowmoney')">Cheapest possible (Less than $30,000)</button>
-</div>
-</div>
-
-
-<div id="result" style="display: none"></div>
-<div id="rankings"></div>
-<script>
-function displayRankings() {
-    var uc_scores = [
-      { 'school': 'UC Berkeley', 'score': 90 },
-      { 'school': 'UC Los Angeles', 'score': 88 },
-      { 'school': 'UC San Diego', 'score': 92 },
-      { 'school': 'UC Santa Barbara', 'score': 85 },
-      { 'school': 'UC Irvine', 'score': 87 },
-      { 'school': 'UC Santa Cruz', 'score': 82 },
-      { 'school': 'UC Davis', 'score': 84 },
-      { 'school': 'UC Riverside', 'score': 79 },
-      { 'school': 'UC Merced', 'score': 75 }
-    ];
-
-
-    uc_scores.sort(function(a, b) {
-      return b.score - a.score;
-    });
-
-
-    var rankingsTable = '<h3>UC School Rankings</h3>' +
-                        '<table>' +
-                        '<tr><th>Ranking</th><th>School</th><th>Score</th></tr>';
-
-    for (var i = 0; i < uc_scores.length; i++) {
-      var ranking = i + 1;
-      var school = uc_scores[i].school;
-      var score = uc_scores[i].score;
-
-      rankingsTable += '<tr><td>' + ranking + '</td><td>' + school + '</td><td>' + score + '</td></tr>';
-    }
-
-    rankingsTable += '</table>';
-
-    document.getElementById("rankings").innerHTML = rankingsTable;
-  }
-  displayRankings();
-</script>
 </body>
 </html>
-
-
