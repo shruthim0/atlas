@@ -4,7 +4,7 @@ permalink: /Review/
 title: UCReview
 ---
 
-<form>
+<form action="javascript:create_review()">
   <p>
     <label>
       School:
@@ -14,7 +14,7 @@ title: UCReview
       Review:
   <input type="text" name="review" id="review" required> 
   <p>
-    <button onclick="create_review()">❊ Add ❊</button>
+    <button>❊ Add ❊</button>
   </p>
 </form>
 
@@ -22,7 +22,6 @@ title: UCReview
 <table>
   <thead>
     <tr>
-      <th>Number</th>
       <th>School</th>
       <th>Review</th>
     </tr>
@@ -35,7 +34,7 @@ title: UCReview
 <script>
   const resultContainer = document.getElementById("result1");
   // const url = "http://172.27.138.205:8086/api/reviews/";
-  const url = "https://atlasnow.duckdns.org/api/reviews/";
+  const url = "https://atlasnow.duckdns.org/api/reviews";
   const create_fetch = url + '/create';
   const read_fetch = url + '/';
   const del_fetch = url + '/delete';
@@ -93,7 +92,6 @@ title: UCReview
   function create_review() {
     // Creates review with inputted data
     const body = {
-      id: document.getElementById("id").value,
       school: document.getElementById("school").value,
       review: document.getElementById("review").value,
     };
@@ -133,17 +131,14 @@ title: UCReview
 
   function add_row(data) {
     const tr = document.createElement("tr");
-    const id = document.createElement("td");
     const school = document.createElement("td");
     const review = document.createElement("td");
 
     // obtain data that is specific to the API
-    school.innerHTML = data.id;
     school.innerHTML = data.school; 
     review.innerHTML = data.review; 
 
     // add HTML to container
-    tr.appendChild(id);
     tr.appendChild(school);
     tr.appendChild(review);
 
