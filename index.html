@@ -46,7 +46,18 @@ image: images/logo.png
     button:hover {
       background-color: #4d7bcf;
     }
+
+  .button-container {
+    text-align: center; /* Aligns the buttons in the center of the container */
+  }
+
+  .button-container button {
+    display: inline-block; /* Displays the buttons next to each other */
+    margin-right: 10px; /* Adds some space between the buttons */
+  }
+  
   </style>
+
 
 </head>
 
@@ -55,11 +66,13 @@ image: images/logo.png
 <br>
 <br>
 
+<div class="button-container"></div>
   <button onclick="location.href = 'https://shruthim0.github.io/atlas/CollegeFinder/';">UC Finder</button>
   <button onclick="location.href = 'https://shruthim0.github.io/atlas/collegesearch';">UC Stats</button>
   <button onclick="location.href = 'https://shruthim0.github.io/atlas/Review/';">UC Reviews</button>
   <button onclick="location.href = 'https://shruthim0.github.io/atlas/crudreview/';">UC Review Sort</button>
   <button onclick="location.href = 'https://shruthim0.github.io/atlas/facts/';">UC Facts</button>
+</div>
 </body>
 
 
