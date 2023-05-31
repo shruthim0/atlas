@@ -4,17 +4,118 @@ permalink: /Review/
 title: UCReview
 ---
 
-<form>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  select,
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #151397;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #4d7bcf;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #534caf;
+    color: #fff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+</style>
+
+<h1>ATLAS Reviews</h1>
+
+<form action="javascript:create_review()">
   <p>
     <label>
       School:
-      <input type="text" name="school" id="school" required> <!-- make sure name and review are required fields -->
+      <select name="school" id="school" required>
+        <option value="">Select a UC school</option>
+        <option value="UC Berkeley">UC Berkeley</option>
+        <option value="UC Davis">UC Davis</option>
+        <option value="UC Irvine">UC Irvine</option>
+        <option value="UC Los Angeles">UC Los Angeles</option>
+        <option value="UC Merced">UC Merced</option>
+        <option value="UC Riverside">UC Riverside</option>
+        <option value="UC San Diego">UC San Diego</option>
+        <option value="UC San Francisco">UC San Francisco</option>
+        <option value="UC Santa Barbara">UC Santa Barbara</option>
+        <option value="UC Santa Cruz">UC Santa Cruz</option>
+      </select>
     </label>
   </p> 
-      Review:
+  Review:
   <input type="text" name="review" id="review" required> 
   <p>
-    <button onclick="create_review()">❊ Add ❊</button>
+    <p>
+      <label>
+        Score:
+        <select name="score" id="score" required>
+          <option value="">Score 1-10</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </label>
+    </p> 
+    <button>❊ Add ❊</button>
   </p>
 </form>
 
@@ -22,9 +123,9 @@ title: UCReview
 <table>
   <thead>
     <tr>
-      <th>Number</th>
       <th>School</th>
       <th>Review</th>
+      <th>Score</th>
     </tr>
   </thead>
   <tbody id="result1">
@@ -35,7 +136,7 @@ title: UCReview
 <script>
   const resultContainer = document.getElementById("result1");
   // const url = "http://172.27.138.205:8086/api/reviews/";
-  const url = "https://atlasnow.duckdns.org/api/reviews/";
+  const url = "https://atlasnow.duckdns.org/api/reviews";
   const create_fetch = url + '/create';
   const read_fetch = url + '/';
   const del_fetch = url + '/delete';
@@ -93,9 +194,9 @@ title: UCReview
   function create_review() {
     // Creates review with inputted data
     const body = {
-      id: document.getElementById("id").value,
       school: document.getElementById("school").value,
       review: document.getElementById("review").value,
+      score: document.getElementById("score").value,
     };
     const requestOptions = {
       method: 'POST',
@@ -133,19 +234,19 @@ title: UCReview
 
   function add_row(data) {
     const tr = document.createElement("tr");
-    const id = document.createElement("td");
     const school = document.createElement("td");
     const review = document.createElement("td");
+    const score = document.createElement("td");
 
     // obtain data that is specific to the API
-    school.innerHTML = data.id;
     school.innerHTML = data.school; 
     review.innerHTML = data.review; 
+    score.innerHTML = data.score; 
 
     // add HTML to container
-    tr.appendChild(id);
     tr.appendChild(school);
     tr.appendChild(review);
+    tr.appendChild(score);
 
     resultContainer.appendChild(tr);
   }
@@ -179,8 +280,16 @@ title: UCReview
   }
 </script>
 
+<script>
+  function confirmDelete() {
+    if (confirm("Are you sure you want to delete all records?")) {
+      delete_record();
+    }
+  }
+</script>
+
 <div>
-  <form action="javascript:delete_record()">
+  <form action="javascript:confirmDelete()">
     <button>Delete Records</button>
   </form>
 </div>
