@@ -97,6 +97,24 @@ title: UCReview
   Review:
   <input type="text" name="review" id="review" required> 
   <p>
+    <p>
+      <label>
+        Score:
+        <select name="score" id="score" required>
+          <option value="">Score 1-10</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </label>
+    </p> 
     <button>❊ Add ❊</button>
   </p>
 </form>
@@ -107,6 +125,7 @@ title: UCReview
     <tr>
       <th>School</th>
       <th>Review</th>
+      <th>Score</th>
     </tr>
   </thead>
   <tbody id="result1">
@@ -177,6 +196,7 @@ title: UCReview
     const body = {
       school: document.getElementById("school").value,
       review: document.getElementById("review").value,
+      score: document.getElementById("score").value,
     };
     const requestOptions = {
       method: 'POST',
@@ -216,14 +236,17 @@ title: UCReview
     const tr = document.createElement("tr");
     const school = document.createElement("td");
     const review = document.createElement("td");
+    const score = document.createElement("td");
 
     // obtain data that is specific to the API
     school.innerHTML = data.school; 
     review.innerHTML = data.review; 
+    score.innerHTML = data.score; 
 
     // add HTML to container
     tr.appendChild(school);
     tr.appendChild(review);
+    tr.appendChild(score);
 
     resultContainer.appendChild(tr);
   }
@@ -257,8 +280,16 @@ title: UCReview
   }
 </script>
 
+<script>
+  function confirmDelete() {
+    if (confirm("Are you sure you want to delete all records?")) {
+      delete_record();
+    }
+  }
+</script>
+
 <div>
-  <form action="javascript:delete_record()">
+  <form action="javascript:confirmDelete()">
     <button>Delete Records</button>
   </form>
 </div>
