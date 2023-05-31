@@ -77,19 +77,22 @@ window.onload = wrap_img;
             function search() {
                 var searchTerm = $('#searchInput').val();
 
-                // Make an AJAX request to your Flask route to fetch the search results
-                $.ajax({
-                    type: 'GET',
-                    url: '/search',
-                    data: { term: searchTerm },
-                    success: function(response) {
+                // Make a fetch request to your Flask route to fetch the search results
+                fetch('https://atlasnow.duckdns.org/api/facts/' + searchTerm)
+                    .then(function(response) {
+                        if (response.ok) {
+                            return response.text();
+                        } else {
+                            throw new Error('Request failed.');
+                        }
+                    })
+                    .then(function(data) {
                         // Replace the table body with the updated search results
-                        $('#tableBody').html(response);
-                    },
-                    error: function(xhr, status, error) {
+                        $('#tableBody').html(data);
+                    })
+                    .catch(function(error) {
                         console.error(error);
-                    }
-                });
+                    });
             }
 
             // Bind the search function to the search button click event
@@ -107,96 +110,22 @@ window.onload = wrap_img;
 <body>
     <input type="text" id="searchInput" placeholder="Search...">
     <button id="searchButton">Search</button>
-<br>
-<br>
+    <br>
+    <br>
     <table>
         <thead>
             <tr>
                 <th>School</th>
-                <th> Fun Facts</th>
+                <th>Fun Facts</th>
             </tr>
         </thead>
+        <tbody id="tableBody">
+            <!-- The search results will be populated here -->
+        </tbody>
     </table>
 </body>
-</html> 
+</html>
 
-<script>
-          
-    {const btnfind = document.getElementById("search_button");
-          btnfind.addEventListener('click', (event) => {
-          console.log("Find Clicked!");
-          clearTable();
-         
-          var fact_school_value = school_filter.value;
-          var fact_fact_value = fact_filter.value;  //sets variable to the value of the filter that the user selects
-
-
-          var fact_list = getFactResults(fact_school_value, fact_fact_value); //setting dealership_list to the result gotten in the function getDealershipResults
-
-
-          console.log("Filtered facts retrieved!");
-          console.log(facts_list);
-          console.log("Creating table!");
-
-
-          for (const fact of fact_list) {
-            console.log(fact);
-
-
-            const tr = document.createElement("tr");
-
-
-            const school_ele = document.createElement("td");
-            school_ele.innerHTML = fact.school;
-
-
-            const fact_ele = document.createElement("td");
-            fact_ele.innerHTML = fact.fact;
-
-
-            // this builds ALL td's (cells) into tr element
-            tr.appendChild(school_ele);
-            tr.appendChild(fact_ele);
-
-
-            resultContainer.appendChild(tr);
-          }
-    });
-
-    function clearTable() {
-        var tableRows = resultContainer.getElementsByTagName('tr');
-        var rowCount = tableRows.length;
-        for (var x=rowCount-1; x>=0; x--) {
-            resultContainer.removeChild(tableRows[x]);
-        }
-
-    }
-
-      function getFactResults 
-        fetch('https://atlasnow.duckdns.org/api/facts/').then(function(response) {
-                return response.json();
-            }).then(function(data) {
-                console.log(data);
-                all_dealerships = data;
-            }).catch(function(err) {
-                console.log(err);
-            });
-    }
-
-      function getFactResults(school, fact) {
-        var result = [];
-        for (const fact of all_facts){
-              console.log(fact);
-
-            if ((fact["school"] === school || !school) &&
-                (fact)["fact"] === fact || !fact) {
-                result.push(fact);
-            }
-
-        }
-        return result;
-      }
-</script>
           
       </div>
     </main><footer class="site-footer h-card">
