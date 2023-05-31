@@ -17,7 +17,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","headline":"UCReview","url":"https://shruthim0.github.io/atlas/Review/"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/atlas/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shruthim0.github.io/atlas/feed.xml" title="atlas" /><link rel="shortcut icon" type="image/x-icon" href="/atlas/images/pflag.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="/atlas/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shruthim0.github.io/atlas/feed.xml" title="atlas" /><link rel="shortcut icon" type="image/x-icon" href="/atlas/images/atlas.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 
 <script>
@@ -67,7 +67,7 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <form>
+        <form action="javascript:create_review()">
   <p>
     <label>
       School:
@@ -77,7 +77,7 @@ window.onload = wrap_img;
       Review:
   <input type="text" name="review" id="review" required> 
   <p>
-    <button onclick="create_review()">❊ Add ❊</button>
+    <button>❊ Add ❊</button>
   </p>
 </form>
 
@@ -85,7 +85,6 @@ window.onload = wrap_img;
 <table>
   <thead>
     <tr>
-      <th>Number</th>
       <th>School</th>
       <th>Review</th>
     </tr>
@@ -98,7 +97,7 @@ window.onload = wrap_img;
 <script>
   const resultContainer = document.getElementById("result1");
   // const url = "http://172.27.138.205:8086/api/reviews/";
-  const url = "https://atlasnow.duckdns.org/api/reviews/";
+  const url = "https://atlasnow.duckdns.org/api/reviews";
   const create_fetch = url + '/create';
   const read_fetch = url + '/';
   const del_fetch = url + '/delete';
@@ -156,7 +155,6 @@ window.onload = wrap_img;
   function create_review() {
     // Creates review with inputted data
     const body = {
-      id: document.getElementById("id").value,
       school: document.getElementById("school").value,
       review: document.getElementById("review").value,
     };
@@ -196,17 +194,14 @@ window.onload = wrap_img;
 
   function add_row(data) {
     const tr = document.createElement("tr");
-    const id = document.createElement("td");
     const school = document.createElement("td");
     const review = document.createElement("td");
 
     // obtain data that is specific to the API
-    school.innerHTML = data.id;
     school.innerHTML = data.school; 
     review.innerHTML = data.review; 
 
     // add HTML to container
-    tr.appendChild(id);
     tr.appendChild(school);
     tr.appendChild(review);
 
