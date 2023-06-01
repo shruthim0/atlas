@@ -6,8 +6,14 @@ title: Universities
 
 <html>
 <head>
+    <!-- load jQuery and DataTables syle and scripts -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>var define = null;</script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+</head>
+
     <title>Universities</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,13 +58,7 @@ title: Universities
             background-color: #45a049;
         }
     </style>
-<head>
-    <!-- load jQuery and DataTables syle and scripts -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>var define = null;</script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-</head>
+
 <table id="flaskTable" class="table" style="width:100%">
     <thead id="flaskHead">
         <tr>
@@ -87,7 +87,7 @@ title: Universities
             row.id + '</td><td>' + 
             row.school + '</td><td>' + 
             row.rate + '</td><td>' +
-            row.stufac + '</td><tr>') ;
+            row.stufac + '</td></tr>') ;
       }
       // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
       $("#flaskTable").DataTable();
