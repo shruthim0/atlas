@@ -12,18 +12,16 @@ https://shruthim0.github.io/atlas/
 _powered by [fastpages](https://github.com/fastai/fastpages)_
 
 
-## What To Do Next?
+## Creating the Project
+- Make a copy of this flask: https://github.com/nighthawkcoders/flask_portfolio . This will be the backend for your project
+- Make a copy of this repository. This will be the frontend for your project
 
-Great!  You have setup your repo.  Now its time to start writing content.  Some helpful links:
+## Viewing locally
+- View backend locally: type the command "python3 main.py" into terminal, making sure you are cd into your flask repository. Navigate to the link outputted, using your web browser.
+- View frontend locally:
+  -Testing your [GitHub Pages site locally with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll). To do this ruby Gemfile, bundle install. As an addition add .gitignore to avoid seeing build files in commit. After pre-requisites run this command to obtain prompt for web server...
+  - bundle exec jekyll serve
+ 
 
-- [Writing Blogs With Jupyter](https://github.com/fastai/fastpages#writing-blog-posts-with-jupyter)
 
-- [Writing Blogs With Markdown](https://github.com/fastai/fastpages#writing-blog-posts-with-markdown)
 
-- [Writing Blog Posts With Word](https://github.com/fastai/fastpages#writing-blog-posts-with-microsoft-word)
-
-- [(Optional) Preview Your Blog Locally](_fastpages_docs/DEVELOPMENT.md)
-
-Note: you may want to remove example blog posts from the `_posts`,  `_notebooks` or `_word` folders (but leave them empty, don't delete these folders) if you don't want these blog posts to appear on your site.
-
-Please use the [nbdev & blogging channel](https://forums.fast.ai/c/fastai-users/nbdev/48) in the fastai forums for any questions or feature requests.
