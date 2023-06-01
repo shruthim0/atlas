@@ -22,6 +22,10 @@ _powered by [fastpages](https://github.com/fastai/fastpages)_
   -Testing your [GitHub Pages site locally with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll). To do this ruby Gemfile, bundle install. As an addition add .gitignore to avoid seeing build files in commit. After pre-requisites run this command to obtain prompt for web server...
   - bundle exec jekyll serve
 
+
+## How to use our features
+
+
 ## Deploying Backend through AWS
 - Use [AWS Deployment Guide](https://nighthawkcoders.github.io/APCSP/deploymentGuide)
  
