@@ -50,10 +50,10 @@
 
   
       ,"page3": {
-          "title": "College Search",
-          "content": "College Search . ID College Acceptance Rate Student to Faculty Ratio . .",
-          "url": "https://shruthim0.github.io/atlas/collegesearch",
-          "relUrl": "/collegesearch",
+          "title": "Universities",
+          "content": "Universities . ID College Acceptance Rate Student to Faculty Ratio . .",
+          "url": "https://shruthim0.github.io/atlas/universities",
+          "relUrl": "/universities",
           "date": ""
       }
       
