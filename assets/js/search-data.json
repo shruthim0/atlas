@@ -51,7 +51,7 @@
   
       ,"page3": {
           "title": "College Search",
-          "content": "College Search . ID College City Acceptance Rate Area Student to Faculty Ratio Top Majors . .",
+          "content": "College Search . ID College Acceptance Rate Student to Faculty Ratio . .",
           "url": "https://shruthim0.github.io/atlas/collegesearch",
           "relUrl": "/collegesearch",
           "date": ""
@@ -61,6 +61,17 @@
 
   
       ,"page4": {
+          "title": "College Search",
+          "content": "College Search . ID College City Acceptance Rate Area Student to Faculty Ratio Top Majors . .",
+          "url": "https://shruthim0.github.io/atlas/collegesearch",
+          "relUrl": "/collegesearch",
+          "date": ""
+      }
+      
+  
+
+  
+      ,"page5": {
           "title": "SortReviews",
           "content": ". UCReviews Sorted . Sort through the reviews with key words, phrases, or prefered order. . Number School Review Score . &lt;/html&gt; .",
           "url": "https://shruthim0.github.io/atlas/crudreview/",
@@ -71,7 +82,7 @@
   
 
   
-      ,"page5": {
+      ,"page6": {
           "title": "UCFacts",
           "content": "UC Facts . ID School Fact . .",
           "url": "https://shruthim0.github.io/atlas/facts/",
@@ -102,7 +113,7 @@
   
 
   
-      ,"page13": {
+      ,"page14": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/atlas/robots.txt",
