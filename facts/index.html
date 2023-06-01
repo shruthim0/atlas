@@ -69,64 +69,96 @@ window.onload = wrap_img;
       <div class="wrapper">
         <html>
 <head>
-    <title>Search Functionality</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Define the search function
-            function search() {
-                var searchTerm = $('#searchInput').val();
-
-                // Make a fetch request to your Flask route to fetch the search results
-                fetch('https://atlasnow.duckdns.org/api/facts/' + searchTerm)
-                    .then(function(response) {
-                        if (response.ok) {
-                            return response.text();
-                        } else {
-                            throw new Error('Request failed.');
-                        }
-                    })
-                    .then(function(data) {
-                        // Replace the table body with the updated search results
-                        $('#tableBody').html(data);
-                    })
-                    .catch(function(error) {
-                        console.error(error);
-                    });
-            }
-
-            // Bind the search function to the search button click event
-            $('#searchButton').click(search);
-
-            // Bind the search function to the Enter key press event in the search input
-            $('#searchInput').keypress(function(event) {
-                if (event.keyCode === 13) {
-                    search();
-                }
-            });
-        });
-    </script>
+    <title>UC Facts</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #2d3bd8;
+        }
+    
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #2d3bd8;
+        }
+    
+        thead th {
+            background-color: #f2f2f2;
+        }
+    
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    
+        #searchInput, #searchButton {
+            padding: 6px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    
+        #searchButton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    
+        #searchButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+<head>
+    <!-- load jQuery and DataTables syle and scripts -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>var define = null;</script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
-<body>
-    <input type="text" id="searchInput" placeholder="Search...">
-    <button id="searchButton">Search</button>
-    <br>
-    <br>
-    <table>
-        <thead>
-            <tr>
-                <th>School</th>
-                <th>Fun Facts</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <!-- The search results will be populated here -->
-        </tbody>
-    </table>
-</body>
-</html>
 
-          
+<table id="flaskTable" class="table" style="width:100%">
+    <thead id="flaskHead">
+        <tr>
+            <th>ID</th>
+            <th>School</th>
+            <th>Fact</th>
+        </tr>
+    </thead>
+    <tbody id="flaskBody"></tbody>
+</table>
+
+<script>
+  $(document).ready(function() {
+    fetch('https://atlasnow.duckdns.org/api/facts/', { mode: 'cors' })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('API response failed');
+      }
+      return response.json();
+    })
+    .then(data => {
+      for (const row of data) {
+        // BUG warning/resolution - DataTable requires row to be single append
+        $('#flaskBody').append('<tr><td>' + 
+            row.id + '</td><td>' + 
+            row.school + '</td><td>' + 
+            row.fact + '</td></tr>');
+      }
+      // BUG warning - Jupyter does not show Datatable controls, works on deployed GitHub pages
+      $("#flaskTable").DataTable();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+</script>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/atlas/"></data>
