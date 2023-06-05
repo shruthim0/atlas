@@ -68,7 +68,53 @@ window.onload = wrap_img;
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <html>
-    <title>UC Facts</title>
+    <head>
+        <title>UC Facts</title>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+        
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                color: #2d3bd8;
+            }
+        
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #2d3bd8;
+            }
+        
+            thead th {
+                background-color: #f2f2f2;
+            }
+        
+            tbody tr:hover {
+                background-color: #f5f5f5;
+            }
+        
+            #searchInput, #searchButton {
+                padding: 6px;
+                font-size: 16px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+        
+            #searchButton {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        
+            #searchButton:hover {
+                background-color: #45a049;
+            }
+        </style>
 <head>
     <!-- load jQuery and DataTables syle and scripts -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
