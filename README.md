@@ -17,17 +17,15 @@ _powered by [fastpages](https://github.com/fastai/fastpages)_
 - Make a copy of this repository. This will be the frontend for your project
 
 ## Viewing locally
-- View backend locally: type the command "python3 main.py" into terminal, making sure you are cd into your flask repository. Navigate to the link outputted, using your web browser.
 - View frontend locally:
   -Testing your [GitHub Pages site locally with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll). To do this ruby Gemfile, bundle install. As an addition add .gitignore to avoid seeing build files in commit. After pre-requisites run this command to obtain prompt for web server...
   - bundle exec jekyll serve
 
 
+
 ## How to use our features
+### College Finder
 
-
-## Deploying Backend through AWS
-- Use [AWS Deployment Guide](https://nighthawkcoders.github.io/APCSP/deploymentGuide)
  
 
 
